@@ -1,8 +1,9 @@
 import React from 'react'
+import './Rightsidebar.css'
 
 const Rightsidebar = () => {
   return (
-    <div>
+    <div className='w-[20%]'>
       hello
     </div>
   )

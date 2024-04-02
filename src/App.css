@@ -1,40 +1,4 @@
-.main {
-    margin-top: 35px;
 
-    .leftmainbar {
-        margin: 0 0 20px 0;
-
-        .box {
-            display: flex;
-            align-items: center;
-            padding: 13px;
-        }
-
-        .postbutton {
-            width: 100%;
-            padding: 14px;
-            border: 0;
-            background-color: #1D9Df0;
-            border-radius: 10px;
-            font-size: medium;
-            font-weight: 600;
-        }
-
-        span {
-            margin: 0 0 0 20px;
-            font-size: 20px;
-            font-weight: 500;
-        }
-    }
-}
-
-
-.leftmainbar :hover.box {
-    background: rgb(170, 167, 167);
-    transition: .8s;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 .home {
     display: flex;
@@ -43,15 +7,3 @@
     width: 70%;
 }
 
-.postmain {
-    .postsecond {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    span {
-        font-size: 20px;
-        font-weight: 500;
-    }
-}

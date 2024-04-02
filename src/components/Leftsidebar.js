@@ -7,12 +7,12 @@ import { CiMail } from "react-icons/ci";
 import { TbPremiumRights } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { CiCircleMore } from "react-icons/ci";
-
+import './Leftsidebar.css';
 import '../App.css';
 
 const Leftsidebar = () => {
     return (
-        <>
+        <div className='w-[20%]'>
             <div>
                 <div>
                     <img width={"40px"} src={twitterlogo} alt="twitter-logo" />
@@ -71,7 +71,7 @@ const Leftsidebar = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
