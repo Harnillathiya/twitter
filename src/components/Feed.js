@@ -1,9 +1,10 @@
 import React from 'react'
+import CreatePost from './CreatePost'
 
 const Feed = () => {
   return (
     <div>
-      hello
+     <CreatePost/>
     </div>
   )
 }
