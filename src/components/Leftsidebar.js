@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 
 import '../App.css';
-import Explore from '../Page/Explore';
+// import Explore from '../Page/Explore';
 
 const Leftsidebar = () => {
     return (

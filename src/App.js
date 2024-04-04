@@ -7,8 +7,8 @@ import Massages from "./Page/Massages"
 import Profile from "./Page/Profile"
 import Premium from "./Page/Premium"
 import More from "./Page/More"
-import Leftsidebar from './components/Leftsidebar';
-import Rightsidebar from './components/Rightsidebar';
+// import Leftsidebar from './components/Leftsidebar';
+// import Rightsidebar from './components/Rightsidebar';
 import Login from './Page/Login';
 
 
