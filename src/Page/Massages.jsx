@@ -3,7 +3,7 @@ import React from 'react'
 const Massages = () => {
   return (
     <div>
-      <h1>Massages page</h1>
+      <h1>Massages Page</h1>
     </div>
   )
 }

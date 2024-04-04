@@ -1,5 +1,6 @@
 .main {
   margin-top: 35px;
+  /* width: 20%; */
 
   .leftmainbar {
     margin: 0 0 20px 0;
@@ -37,7 +38,7 @@
 
 .home {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .postmain {

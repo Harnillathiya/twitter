@@ -1,20 +1,21 @@
 import React from "react";
-import Leftsidebar from "./Leftsidebar";
+// import Feed from "./Feed";
+import "../App.css";
 import Rightsidebar from "./Rightsidebar";
+import Leftsidebar from "./Leftsidebar";
 import Feed from "./Feed";
-import '../App.css';
-import Container from '@mui/material/Container';
+import { Container } from "@mui/material";
 
 const Home = () => {
   return (
-    <Container maxWidth="lg">
-    <div className='home'>
-        <Leftsidebar/>
-        <Feed/>
-        <Rightsidebar/>
-    </div>
-    </Container>
-  )
-}
+    <>
+      <Container maxWidth="lg">
+        <Leftsidebar />
+        <Feed />
+        <Rightsidebar />
+      </Container>
+    </>
+  );
+};
 
-export default Home
+export default Home;
