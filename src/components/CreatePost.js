@@ -7,6 +7,11 @@ import { FiSmile } from "react-icons/fi";
 import { FaLocationDot } from "react-icons/fa6";
 import { GrSchedulePlay } from "react-icons/gr";
 import Avatar from 'react-avatar';
+import { SlLike } from "react-icons/sl";
+import { FaRegComment } from "react-icons/fa";
+import { CiBookmarkCheck } from "react-icons/ci";
+import { CiViewBoard } from "react-icons/ci";
+import { BiRepost } from "react-icons/bi";
 import './Feed.css';
 import { addTweet } from '../redux/action';
 

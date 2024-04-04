@@ -7,12 +7,16 @@ import { CiMail } from "react-icons/ci";
 import { TbPremiumRights } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { CiCircleMore } from "react-icons/ci";
+import { LuLogOut } from "react-icons/lu";
+import { Link } from 'react-router-dom';
+
 
 import '../App.css';
+import Explore from '../Page/Explore';
 
 const Leftsidebar = () => {
     return (
-        <>
+        <div className='main-menu-left'>
             <div>
                 <div>
                     <img width={"40px"} src={twitterlogo} alt="twitter-logo" />
@@ -27,7 +31,7 @@ const Leftsidebar = () => {
                     <div className='leftmainbar'>
                         <div className='box'>
                             <CiSearch size={"26"} />
-                            <span>Explore</span>
+                            <Link to="/exlore"> <span>Explore</span></Link>
                         </div>
                     </div>
                     <div className='leftmainbar'>
@@ -62,7 +66,7 @@ const Leftsidebar = () => {
                     </div>
                     <div className='leftmainbar'>
                         <div className='box'>
-                            <CiCircleMore size={"26"} />
+                            <LuLogOut size={"26"} />
                             <span>logout</span>
                         </div>
                     </div>
@@ -71,7 +75,7 @@ const Leftsidebar = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
