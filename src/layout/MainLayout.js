@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 
 const MainLayout = () => {
     return (
-        <Container maxWidth="lg">
+         <Container maxWidth="sm">
         <div className='main-layout'>
             <Leftsidebar/>
             <Outlet/>
