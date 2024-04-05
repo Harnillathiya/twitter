@@ -1,18 +1,19 @@
 import "./App.css";
-import Home from "./components/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, RouterProvider } from "react-router-dom";
 import Explore from "./Page/Explore";
 import Notifications from "./Page/Notifications";
 import Massages from "./Page/Massages";
 import Profile from "./Page/Profile";
 import Premium from "./Page/Premium";
 import More from "./Page/More";
+import router from "./routes";
 // import Leftsidebar from "./components/Leftsidebar";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <RouterProvider router={router}/>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
@@ -22,7 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/more" element={<More />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </>
   );
 }
