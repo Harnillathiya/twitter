@@ -16,7 +16,7 @@ import '../App.css';
 const Leftsidebar = () => {
   return (
     <div>
-      <div>
+      <div className="leftsidebar-fix">
         <div>
           <img width={"40px"} src={twitterlogo} alt="twitter-logo" />
         </div>
@@ -24,7 +24,7 @@ const Leftsidebar = () => {
           <div className="leftmainbar">
             <div className="box">
               <IoMdHome size={"26"} />
-              <Link to="/home">
+              <Link to="/">
                 <span>Home</span>
               </Link>
             </div>
