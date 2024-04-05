@@ -1,5 +1,5 @@
-import React from 'react'
-import twitterlogo from '../image/twitterlogo.png'
+import React from "react";
+import twitterlogo from "../image/twitterlogo.png";
 import { IoMdHome } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { IoNotificationsSharp } from "react-icons/io5";
@@ -14,68 +14,82 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 const Leftsidebar = () => {
-    return (
-        <div className='main-menu-left'>
-            <div>
-                <div>
-                    <img width={"40px"} src={twitterlogo} alt="twitter-logo" />
-                </div>
-                <div className='main'>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <IoMdHome size={"26"} />
-                            <span>Home</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <CiSearch size={"26"} />
-                            <Link to="/exlore"> <span>Explore</span></Link>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <IoNotificationsSharp size={"26"} />
-                            <span>Notifications</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <CiMail size={"26"} />
-                            <span>Massages</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <TbPremiumRights size={"26"} />
-                            <span>Premium</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <CgProfile size={"26"} />
-                            <span>Profile</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <CiCircleMore size={"26"} />
-                            <span>More</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <div className='box'>
-                            <LuLogOut size={"26"} />
-                            <span>logout</span>
-                        </div>
-                    </div>
-                    <div className='leftmainbar'>
-                        <button className='postbutton'>post</button>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div>
+      <div>
+        <div>
+          <img width={"40px"} src={twitterlogo} alt="twitter-logo" />
         </div>
-    )
-}
+        <div className="main">
+          <div className="leftmainbar">
+            <div className="box">
+              <IoMdHome size={"26"} />
+              <Link to="/">
+                <span>Home</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <CiSearch size={"26"} />
+              <Link to="/explore">
+                <span>Explore</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <IoNotificationsSharp size={"26"} />
+              <Link to="/notifications">
+                <span>Notifications</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <CiMail size={"26"} />
+              <Link to="/massages">
+                <span>Massages</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <TbPremiumRights size={"26"} />
+              <Link to="/premium">
+                <span>Premium</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <CgProfile size={"26"} />
+              <Link to="/profile">
+                <span>Profile</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <CiCircleMore size={"26"} />
+              <Link to="/more">
+                <span>More</span>
+              </Link>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <div className="box">
+              <LuLogOut size={"26"} />
+              <span>logout</span>
+            </div>
+          </div>
+          <div className="leftmainbar">
+            <button className="postbutton">post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Leftsidebar
+export default Leftsidebar;
