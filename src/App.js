@@ -1,11 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, RouterProvider } from "react-router-dom";
-import Explore from "./Page/Explore";
-import Notifications from "./Page/Notifications";
-import Massages from "./Page/Massages";
-import Profile from "./Page/Profile";
-import Premium from "./Page/Premium";
-import More from "./Page/More";
+import { RouterProvider } from "react-router-dom";
+// import Explore from "./Page/Explore";
+// import Notifications from "./Page/Notifications";
+// import Massages from "./Page/Massages";
+// import Profile from "./Page/Profile";
+// import Premium from "./Page/Premium";
+// import More from "./Page/More";
 import router from "./routes";
 // import Leftsidebar from "./components/Leftsidebar";
 
@@ -13,6 +13,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router}/>
+      
       {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
