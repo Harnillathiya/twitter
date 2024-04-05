@@ -24,7 +24,7 @@ const Leftsidebar = () => {
           <div className="leftmainbar">
             <div className="box">
               <IoMdHome size={"26"} />
-              <Link to="/">
+              <Link to="/home">
                 <span>Home</span>
               </Link>
             </div>
@@ -83,9 +83,9 @@ const Leftsidebar = () => {
               <span>logout</span>
             </div>
           </div>
-          <div className="leftmainbar">
+          {/* <div className="leftmainbar">
             <button className="postbutton">post</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
