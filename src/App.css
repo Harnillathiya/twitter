@@ -151,9 +151,39 @@
   padding-left: 10px;
 }
 .text-explore {
-  padding-left: 20px;
+  padding: 20px;
 }
 .text-location {
-  font-size: 24px;
-  padding-left: 10px;
+  padding-left: 15px;
+}
+.border-line {
+  border: 1px solid black;
+}
+.foryou-borderbox {
+  border: 1px solid black;
+}
+.setting-icon {
+  cursor: pointer;
+}
+.checkbox-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* .explore-locations{
+  padding-top: 18px;
+  padding-left: 15px;
+} */
+.rightarrow-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+.rightarrow-flex:hover {
+  background-color: teal;
+  cursor: pointer;
+}
+.maincheckbox {
+  padding-top: 20px;
 }

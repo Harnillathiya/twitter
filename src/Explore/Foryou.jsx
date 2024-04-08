@@ -5,9 +5,9 @@ import Explore from "../Page/Explore";
 const Foryou = () => {
   return (
     <div>
-      <div className="foryou-borderbox">
+      <div>
         <Explore />
-        <div>
+        <div className="foryou-borderbox">
           {forYou.map((item, index) => (
             <div key={index} className="foryou-mapdata">
               <div>
