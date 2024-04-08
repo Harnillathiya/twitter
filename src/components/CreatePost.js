@@ -12,18 +12,23 @@ import { v4 as uuid } from "uuid";
 const CreatePost = (props) => {
 
   const [tweet, setTweet] = useState("");
-
+  const [error, setError] = useState(null);
 
   const saveTweet = () => {
+    if (tweet.trim() === '') {
+      setError("Tweet cannot be empty.");
+      return;
+    }
+
     const tweetPayload = {
       id: uuid(),
       tweet: tweet,
       timestamp: new Date().getTime()
     };
     setTweet("");
-    props.onSaveTweet(tweetPayload)
+    setError(null);
+    props.onSaveTweet(tweetPayload);
   };
-
 
   return (
     <div className="w-[100%]">
@@ -50,8 +55,11 @@ const CreatePost = (props) => {
               className="w-full outline-none border-none text-lg ml-3"
               value={tweet}
               type="text"
-              placeholder="What is happing ?!"
-              onChange={(e) => setTweet(e.target.value)}
+              placeholder="What is happening?!"
+              onChange={(e) => {
+                setTweet(e.target.value);
+                setError(null); // Clear error message on input change
+              }}
             />
           </div>
           <div className="flex items-center justify-between p-4 border-b border-gray-300">
@@ -76,11 +84,14 @@ const CreatePost = (props) => {
               </a>
             </div>
             <button
-              className="bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full"
-              onClick={saveTweet}>
+              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === '' && 'opacity-50 cursor-not-allowed'}`} // Apply opacity and cursor-not-allowed classes when tweet is empty
+              onClick={saveTweet}
+              disabled={tweet.trim() === ''} // Disable button when tweet is empty
+            >
               Post
             </button>
           </div>
+          {error && <p className="text-red-500 ml-4">{error}</p>} 
         </div>
       </div>
     </div>

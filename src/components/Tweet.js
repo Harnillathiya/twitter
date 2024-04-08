@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Avatar from 'react-avatar';
-import { SlLike } from "react-icons/sl";
-import { FaRegComment } from "react-icons/fa";
-import { CiBookmarkCheck } from "react-icons/ci";
-import { CiViewBoard } from "react-icons/ci";
-import { BiRepost } from "react-icons/bi";
+import TweetItem from './TweetItem';
 
 const Tweet = ({ tweets }) => {
-
-    const [likes, setLikes] = useState({});
-    const [comments, setComments] = useState({});
-    const [commentInput, setCommentInput] = useState("");
-    const [showCommentBox, setShowCommentBox] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
@@ -24,7 +15,9 @@ const Tweet = ({ tweets }) => {
     const getTimeAgo = (timestamp) => {
         const timeDifference = currentTime - timestamp;
         const seconds = Math.floor(timeDifference / 1000);
-        if (seconds < 60) {
+        if (seconds < 0) {
+            return `0 seconds ago`; 
+        } else if (seconds < 60) {
             return `${seconds} seconds ago`;
         } else if (seconds < 3600) {
             return `${Math.floor(seconds / 60)} minutes ago`;
@@ -35,74 +28,8 @@ const Tweet = ({ tweets }) => {
         }
     };
 
-    const handleLike = (uuid) => {
-        setLikes((prevLikes) => ({
-            ...prevLikes,
-            [uuid]: (prevLikes[uuid] || 0) + 1
-        }));
-    };
-
-    const handleComment = (uuid) => {
-        setComments((prevComments) => ({
-            ...prevComments,
-            [uuid]: (prevComments[uuid] || 0) + 1
-        }));
-        setShowCommentBox((prevShowCommentBox) => !prevShowCommentBox);
-    };
-
-    const handleCommentSubmit = (uuid) => {
-        setShowCommentBox(false);
-        setCommentInput("");
-    };
-
-    const renderTweetButtons = (tweet, index) => {
-        const uuid = index;
-
-        return (
-            <div className="flex justify-between p-3" key={index}>
-                <div className="flex items-center">
-                    <button onClick={() => handleLike(uuid)} className="hover:text-blue-500">
-                        <SlLike size={"24px"} />
-                    </button>
-                    <p>{likes[uuid] || 0}</p>
-                </div>
-                <div className="flex items-center">
-                    <button onClick={() => handleComment(uuid)} className="hover:text-blue-500">
-                        <FaRegComment size={"24px"} />
-                    </button>
-                    <p>{comments[uuid] || 0}</p>
-                    <div>
-                        {showCommentBox && (
-                            <div>
-                                <input
-                                    type="text"
-                                    placeholder="Write a comment..."
-                                    value={commentInput}
-                                    onChange={(e) => setCommentInput(e.target.value)}
-                                />
-                                <button onClick={() => handleCommentSubmit(uuid)}>Submit</button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <div className=" flex items-center hover:text-blue-500">
-                    <CiBookmarkCheck size={"24px"} />
-                    <p>0</p>
-                </div>
-                <div className="flex items-center hover:text-blue-500">
-                    <CiViewBoard size={"24px"} />
-                    <p>0</p>
-                </div>
-                <div className=" flex items-center hover:text-blue-500">
-                    <BiRepost size={"24px"} />
-                    <p>0</p>
-                </div>
-            </div>
-        );
-    };
-
     return (
-        <div>
+        <div className='p-4'>
             <div>
                 <div>
                     <div className="flex">
@@ -114,13 +41,13 @@ const Tweet = ({ tweets }) => {
                         <div>
                             <div className="flex ml-4 items-center">
                                 <h2>Harsa Dash</h2>
-                                <p className="text-gray-400 text-sm">@Harsa_Dash .1m</p>
+                                <p className="text-gray-400 text-sm pl-2">@Harsa_Dash</p>
                             </div>
+                            {/* <p>{getTimeAgo()}</p> */}
                         </div>
                     </div>
                 </div>
                 <div className="ml-12 mt-4  tweet-area">
-                    <input type="text" placeholder="tweet" />
                     <div>
                         {tweets.map((tweet, index) => (
                             <div key={index}>
@@ -128,11 +55,9 @@ const Tweet = ({ tweets }) => {
                                     {tweet.tweet}
                                 </button>
                                 <p>{getTimeAgo(tweet.timestamp)} </p>
-                                <div>
-                                    {renderTweetButtons(tweet, index)}
-                                </div>
+                                <TweetItem />
                             </div>
-                        )).reverse()}
+                        ))}
                     </div>
                 </div>
             </div>
