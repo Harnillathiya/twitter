@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { FaImage } from "react-icons/fa";
 import { MdOutlineGifBox } from "react-icons/md";
 import { BiPoll } from "react-icons/bi";
@@ -28,7 +28,7 @@ const CreatePost = () => {
     const tweetPayload = {
       id: uuid(),
       tweet: tweet,
-      timestamp: new Date().getTime()
+      timestamp: new Date().getTime(),
     };
     dispatch(addTweet(tweetPayload));
     setTweet("");
@@ -37,7 +37,7 @@ const CreatePost = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
-    }, 1000); 
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -107,7 +107,8 @@ const CreatePost = () => {
             </div>
             <button
               className="bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full"
-              onClick={saveTweet}>
+              onClick={saveTweet}
+            >
               Post
             </button>
           </div>
@@ -128,21 +129,32 @@ const CreatePost = () => {
                 <p className="text-gray-400 text-sm">@Harsa_Dash .1m</p>
               </div>
               <div className="">
-                <p className="text-gray-400 text-sm ml-4">I’m quitting YouTube</p>
+                <p className="text-gray-400 text-sm ml-4">
+                  I’m quitting YouTube
+                </p>
               </div>
             </div>
           </div>
-
         </div>
         <div className="ml-12 mt-4  tweet-area">
-          <input type="text" placeholder="tweet" value={tweet} onChange={(e) => setTweet(e.target.value)} />
+          <input
+            type="text"
+            placeholder="tweet"
+            value={tweet}
+            onChange={(e) => setTweet(e.target.value)}
+          />
           <div>
             {tweets.tweets.map((tweet, index) => (
               <div key={index}>
-                <button className="text-blue-500 hover:text-blue-700" onClick={() => setTweet(tweet)}>
+                <button
+                  className="text-blue-500 hover:text-blue-700"
+                  onClick={() => setTweet(tweet)}
+                >
                   {tweet.tweet}
                 </button>
-                <p>{getTimeAgo(tweet.timestamp)} {/* Display time ago */}</p>
+                <p>
+                  {getTimeAgo(tweet.timestamp)} {/* Display time ago */}
+                </p>
               </div>
             ))}
           </div>
