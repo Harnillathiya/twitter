@@ -59,18 +59,101 @@
   height: 50px;
   border-radius: 25px;
 }
-.main-flex{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+.main-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
-.follow-btn{
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    padding: 5px 15px;
+.follow-btn {
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 15px;
 }
-.footer-text{
-    font-size: 13px;
-    margin: 4px;
+.footer-text {
+  font-size: 13px;
+  margin: 4px;
+}
+.searchbar {
+  display: grid;
+  grid-template-columns: 1fr 70px;
+  padding: 20px;
+  align-items: center;
+}
+.setting-icon {
+  display: flex;
+  justify-content: end;
+  font-size: 30px;
+}
+.explore-nav {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.border-line ul li {
+  padding: 20px;
+  position: relative;
+}
+.border-line ul li:hover {
+  background-color: rgb(230, 214, 191);
+}
+.border-line ul li::before {
+  content: "";
+  bottom: 0;
+  left: 0;
+  top: 100;
+  position: absolute;
+  background-color: rgb(65, 47, 47);
+  height: 5%;
+  width: 100%;
+  display: none;
+}
+.border-line ul li:hover::before {
+  display: block;
+}
+.foryou-mapdata {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  /* position: sticky;
+  top: 20%; */
+}
+.nametwo-text {
+  font-weight: bold;
+}
+.different-name {
+  color: blue;
+}
+.foryou-mapdata:hover {
+  background-color: rgb(167, 177, 177);
+}
+.leftsidebar-fix {
+  position: fixed;
+  top: 0;
+}
+.rightsidebar-fix {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.searchbar-color {
+  background-color: lightblue;
+  width: 638px;
+}
+.searchbar-fix {
+  background-color: whitesmoke;
+}
+.explore-setting {
+  display: flex;
+  align-items: center;
+}
+.cancel-icon {
+  padding-left: 10px;
+}
+.text-explore {
+  padding-left: 20px;
+}
+.text-location {
+  font-size: 24px;
+  padding-left: 10px;
 }
