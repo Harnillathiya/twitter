@@ -55,7 +55,7 @@ const Tweet = ({ tweets }) => {
                                     {tweet.tweet}
                                 </button>
                                 <p>{getTimeAgo(tweet.timestamp)} </p>
-                                <TweetItem />
+                                <TweetItem index={tweet.id} />
                             </div>
                         ))}
                     </div>
