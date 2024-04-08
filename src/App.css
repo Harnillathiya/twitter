@@ -28,6 +28,9 @@
     }
   }
 }
+.manubar-left{
+  margin-right: 10px;
+}
 
 .leftmainbar :hover.box {
   background: rgb(170, 167, 167);
