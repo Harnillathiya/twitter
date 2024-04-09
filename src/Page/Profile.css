@@ -2,6 +2,10 @@
   display: flex;
   align-items: center;
   background-color: rgb(43, 39, 39);
+  position: fixed;
+  top: 0;
+  width: 748px;
+  z-index: 999;
 }
 .name-text {
   color: white;
@@ -23,7 +27,7 @@
 }
 .avatar-position {
   position: absolute;
-  top: 30%;
+  top: 21%;
   left: 25%;
   background-color: white;
   color: black;
@@ -43,6 +47,7 @@
   border-radius: 20px !important;
   margin-top: 15px !important;
   margin-right: 15px !important;
+  text-transform: capitalize !important;
 }
 .profile-rahul-text {
   color: white;
@@ -90,29 +95,60 @@
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid rgb(121, 113, 113);
 }
-.profile-header-li{
-    padding-bottom: 15px;
+.profile-header-li {
+  padding-bottom: 15px;
 }
-.profile-header-li:hover{
-    font-weight: 500;
-    color: white;
-    border-bottom: 3px solid royalblue;
+.profile-header-li:hover {
+  font-weight: 500;
+  color: white;
+  border-bottom: 3px solid royalblue;
 }
-.post-box{
-    background-color: black;
-    color: white
+.post-box {
+  background-color: black;
+  color: white;
 }
-.highlight{
-    font-size: 35px;
-    font-weight: 700;
-    text-align: center;
+.highlight {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
 }
-.subscribed{
+.subscribed {
   color: rgb(121, 113, 113);
   text-align: center;
+  padding-left: 53px;
+  padding-top: 15px;
 }
-.subscribe-btn{
-    text-align: center;
+.subscribe-btn {
+  padding-left: 225px;
+  padding-top: 20px;
+}
+.profile {
+  font-size: 35px;
+  font-weight: 700;
+  padding-left: 229px;
+}
+.post-profile {
+  color: rgb(121, 113, 113);
+  padding-left: 232px;
+}
+.sub-to-premium {
+  color: black !important;
+  border: 1px solid white !important;
+  background-color: white !important;
+  border-radius: 25px !important;
+  font-weight: 700 !important;
+  text-transform: capitalize !important;
+  padding: 10px 20px !important;
+}
+.post-height{
+  height: 550px;
+}
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
 }

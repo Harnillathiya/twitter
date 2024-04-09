@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoArrowLeft } from "react-icons/go";
 import "./Profile.css";
 import { UserOutlined } from "@ant-design/icons";
@@ -6,8 +6,43 @@ import { Avatar } from "antd";
 import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
 import { Link } from "react-router-dom";
+import { profileCom } from "../StaticData";
+import Posts from "../Profile/Posts";
+
+const profileHeader = [
+  {
+    id: "posts",
+    text: "Posts",
+  },
+  {
+    id: "replies",
+    text: "Replies",
+  },
+  {
+    id: "highlights",
+    text: "Highlights",
+  },
+  {
+    id: "articles",
+    text: "Articles",
+  },
+  {
+    id: "media",
+    text: "Media",
+  },
+  {
+    id: "like",
+    text: "Like",
+  },
+];
+
 
 const Profile = () => {
+  const [selectedTab, setSelectedTab] = useState("posts");
+  const selectedTabHandler = (id) => {
+    setSelectedTab(id);
+    console.log(id);
+  };
   return (
     <div>
       <div className="profile-main-box">
@@ -51,7 +86,7 @@ const Profile = () => {
               <span className="one">0</span>Followers
             </p>
           </div>
-          <div>
+          {/* <div>
             <ul className="profile-header">
               <li className="profile-header-li">
                 <Link to="/posts">Posts</Link>
@@ -72,6 +107,22 @@ const Profile = () => {
                 <Link to="/like">Like</Link>
               </li>
             </ul>
+          </div> */}
+          <div className="flex">
+            {profileHeader.map((item, index) => {
+              return (
+                <div
+                  className="flex-col"
+                  key={index}
+                  onClick={() => selectedTabHandler(item.id)}
+                >
+                  {item.text}
+                </div>
+              );
+            })}
+          </div>
+          <div>
+           <h3 style={{color: "white"}}>{profileCom[selectedTab]?.textOne}</h3>
           </div>
         </div>
       </div>

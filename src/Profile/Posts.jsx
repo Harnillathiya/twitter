@@ -7,17 +7,17 @@ const Posts = () => {
     <div>
       <div className="post-box">
         <Profile />
-        <div>
+        <div className="post-height">
           <p className="highlight">
             Highlight on your
           </p>
-          <p>Profile</p>
+          <p className="profile">Posts</p>
           <p className="subscribed">
             You must be subscribed to Premium to highlight 
           </p>
-          <p>posts on your profile</p>
+          <p className="post-profile">posts on your profile</p>
           <div className="subscribe-btn">
-            <Button variant="outlined">Subscribe to Preminum</Button>
+            <Button variant="outlined" className="sub-to-premium">Subscribe to Premium</Button>
           </div>
         </div>
       </div>
