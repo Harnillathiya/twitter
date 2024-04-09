@@ -23,7 +23,8 @@ const CreatePost = (props) => {
     const tweetPayload = {
       id: uuid(),
       tweet: tweet,
-      timestamp: new Date().getTime()
+      timestamp: new Date().getTime(),
+      likes: 0
     };
     setTweet("");
     setError(null);

@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import Avatar from 'react-avatar';
 import TweetItem from './TweetItem';
 
-const Tweet = ({ tweets }) => {
-    const [currentTime, setCurrentTime] = useState(new Date());
+const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
+    // const [currentTime, setCurrentTime] = useState(new Date());
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         setCurrentTime(new Date());
+    //     }, 1000);
+    //     return () => clearInterval(timer);
+    // }, []);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
-        return () => clearInterval(timer);
-    }, []);
-
-    const getTimeAgo = (timestamp) => {
-        const timeDifference = currentTime - timestamp;
-        const seconds = Math.floor(timeDifference / 1000);
-        if (seconds < 0) {
-            return `0 seconds ago`; 
-        } else if (seconds < 60) {
-            return `${seconds} seconds ago`;
-        } else if (seconds < 3600) {
-            return `${Math.floor(seconds / 60)} minutes ago`;
-        } else if (seconds < 86400) {
-            return `${Math.floor(seconds / 3600)} hours ago`;
-        } else {
-            return `${Math.floor(seconds / 86400)} days ago`;
-        }
-    };
+    // const getTimeAgo = (timestamp) => {
+    //     const timeDifference = currentTime - timestamp;
+    //     const seconds = Math.floor(timeDifference / 1000);
+    //     if (seconds < 0) {
+    //         return `0 seconds ago`;
+    //     } else if (seconds < 60) {
+    //         return `${seconds} seconds ago`;
+    //     } else if (seconds < 3600) {
+    //         return `${Math.floor(seconds / 60)} minutes ago`;
+    //     } else if (seconds < 86400) {
+    //         return `${Math.floor(seconds / 3600)} hours ago`;
+    //     } else {
+    //         return `${Math.floor(seconds / 86400)} days ago`;
+    //     }
+    // };
 
     return (
         <div className='p-4'>
@@ -54,8 +53,14 @@ const Tweet = ({ tweets }) => {
                                 <button className="text-blue-500 hover:text-blue-700">
                                     {tweet.tweet}
                                 </button>
-                                <p>{getTimeAgo(tweet.timestamp)} </p>
-                                <TweetItem index={tweet.id} />
+                                {/* <p>{getTimeAgo(tweet.timestamp)} </p> */}
+                                <TweetItem
+                                    tweet={tweet}
+                                    likeTweet={onTweetLike}
+                                    unlikeTweet={onTweetUnLike}
+                                    setCommentText={onAddComment}
+                                />
+                                {/* dispatch({ type: 'ADD_COMMENT', payload: { tweetId: tweet.id, comment: commentText } });  */}
                             </div>
                         ))}
                     </div>
