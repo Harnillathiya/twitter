@@ -1,0 +1,37 @@
+.tweet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.tweet-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.tweet-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.comment-textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+.submit-button {
+    margin-top: 10px;
+}
+
+.close-button {
+    margin-top: 10px;
+    margin-left: 10px;
+}

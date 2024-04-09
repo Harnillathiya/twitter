@@ -26,7 +26,7 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
     //         return `${Math.floor(seconds / 86400)} days ago`;
     //     }
     // };
-
+    
     return (
         <div className='p-4'>
             <div>
