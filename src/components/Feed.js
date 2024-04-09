@@ -14,7 +14,7 @@ const Feed = () => {
   }
 
   const onTweetLike = (id) => {
-    console.log(id)
+    // console.log(id)
     dispatch(likeTweet(id))
   }
 
