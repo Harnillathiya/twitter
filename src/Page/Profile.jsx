@@ -5,9 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
-import { Link } from "react-router-dom";
 import { profileCom } from "../StaticData";
-import Posts from "../Profile/Posts";
 
 const profileHeader = [
   {
@@ -31,11 +29,10 @@ const profileHeader = [
     text: "Media",
   },
   {
-    id: "like",
-    text: "Like",
+    id: "likes",
+    text: "Likes",
   },
 ];
-
 
 const Profile = () => {
   const [selectedTab, setSelectedTab] = useState("posts");
@@ -44,10 +41,10 @@ const Profile = () => {
     console.log(id);
   };
   return (
-    <div>
+    <div className="profile-main">
       <div className="profile-main-box">
         <div className="arrow-icon">
-          <GoArrowLeft size={26} color="white" />
+          <GoArrowLeft size={26} color="black" />
         </div>
         <div className="name-post-text">
           <p className="name-text">Rahul Dholakiya</p>
@@ -61,7 +58,7 @@ const Profile = () => {
           className="avatar-position"
         />
       </div>
-      <div className="avatar-second-box">
+      <div>
         <div className="main-profile-button">
           <Button variant="outlined" className="profile-button">
             Set up profile
@@ -86,43 +83,29 @@ const Profile = () => {
               <span className="one">0</span>Followers
             </p>
           </div>
-          {/* <div>
-            <ul className="profile-header">
-              <li className="profile-header-li">
-                <Link to="/posts">Posts</Link>
-              </li>
-              <li className="profile-header-li">
-                <Link to="/replies">Replies</Link>
-              </li>
-              <li className="profile-header-li">
-                <Link to="/highlights">Highlights</Link>
-              </li>
-              <li className="profile-header-li">
-                <Link to="/article">Article</Link>
-              </li>
-              <li className="profile-header-li">
-                <Link to="/media">Media</Link>
-              </li>
-              <li className="profile-header-li">
-                <Link to="/like">Like</Link>
-              </li>
-            </ul>
-          </div> */}
-          <div className="flex">
+          <div className="profile-header">
             {profileHeader.map((item, index) => {
               return (
                 <div
-                  className="flex-col"
                   key={index}
                   onClick={() => selectedTabHandler(item.id)}
+                  className="profileheader-text"
                 >
                   {item.text}
                 </div>
               );
             })}
           </div>
-          <div>
-           <h3 style={{color: "white"}}>{profileCom[selectedTab]?.textOne}</h3>
+          <div className="profilecom-main">
+            <p className="profilecom-textone">
+              {profileCom[selectedTab]?.textOne}
+            </p>
+            <p className="profilecom-texttwo">
+              {profileCom[selectedTab]?.textTwo}
+            </p>
+            <Button variant="outlined" className="profilecom-btn">
+              {profileCom[selectedTab]?.btn}
+            </Button>
           </div>
         </div>
       </div>
