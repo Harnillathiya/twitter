@@ -12,12 +12,6 @@ import Foryou from "./Explore/Foryou";
 import News from "./Explore/News";
 import Sports from "./Explore/Sports";
 import Entertainment from "./Explore/Entertainment";
-import Posts from "./Profile/Posts";
-import Replies from "./Profile/Replies";
-import Highlights from "./Profile/Highlights";
-import Articles from "./Profile/Articles";
-import Media from "./Profile/Media";
-import Likes from "./Profile/Likes";
 
 const router = createBrowserRouter([
   {
@@ -71,30 +65,6 @@ const router = createBrowserRouter([
       {
         path: "explore/entertainment",
         element: <Entertainment />,
-      },
-      {
-        path: "/posts",
-        element: <Posts />,
-      },
-      {
-        path: "/replies",
-        element: <Replies />,
-      },
-      {
-        path: "/highlights",
-        element: <Highlights />,
-      },
-      {
-        path: "/article",
-        element: <Articles />,
-      },
-      {
-        path: "/media",
-        element: <Media />,
-      },
-      {
-        path: "/like",
-        element: <Likes />,
       },
     ],
   },
