@@ -31,7 +31,7 @@ const tweetsReducer = (state = initialState, action) => {
       case ADD_COMMENT:
         const updatedTweets = state.tweets.map((tweet) =>
           tweet.id === action.payload.tweetId
-            ? { ...tweet, comments: [action.payload.comment, ...(tweet.comments || []) ] }
+            ? { ...tweet, comments: [action.payload.comment,...(tweet.comments || []) ] }
             : tweet
         );
         console.log("Updated state after adding comment:", updatedTweets);

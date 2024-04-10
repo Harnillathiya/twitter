@@ -23,15 +23,14 @@ const style = {
 
 const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     const [open, setOpen] = React.useState(false);
-    const [comment, setComment] = useState("")
+    const [comment, setComment] = useState("");
+    const [submittedComment, setSubmittedComment] = useState(null);
 
     const handleOpen = () => {
         setOpen(true);
         setComment("");
     }
     const handleClose = () => setOpen(false);
-
-
 
     const handleLike = () => {
         likeTweet(tweet.id);
@@ -42,10 +41,12 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     };
 
     const handleComment = () => {
+        setSubmittedComment(comment);
         setCommentText(tweet.id, {
             id: uuid(),
             text: comment
         });
+        // Close the modal
         handleClose();
     };
     const changeComment = (e) => {
@@ -104,6 +105,17 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
                         <BiRepost size={"24px"} />
                     </Button>
                     <p>0</p>
+                </div>
+            </div>
+            <div className='showcomment'>
+                <div>
+                    <Box>
+                        <ul>
+                            {submittedComment && (
+                                <li>{submittedComment}</li>
+                            )}
+                        </ul>
+                    </Box>
                 </div>
             </div>
         </div>
