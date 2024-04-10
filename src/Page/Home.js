@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import Feed from "../components/Feed";
+import Feed from "../components/Feed/Feed";
 import { Container } from "@mui/material";
 
 const Home = () => {

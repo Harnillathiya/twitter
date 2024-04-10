@@ -2,7 +2,7 @@ import React from 'react'
 import CreatePost from './CreatePost'
 import Tweet from "./Tweet";
 import { useDispatch, useSelector } from "react-redux";
-import { addTweet, likeTweet, unlikeTweet, addComment } from '../redux/action';
+import { addTweet, likeTweet, unlikeTweet, addComment } from '../../redux/action';
 
 
 const Feed = () => {
