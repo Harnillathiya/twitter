@@ -87,7 +87,7 @@ const CreatePost = (props) => {
             <button
               className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === '' && 'opacity-50 cursor-not-allowed'}`} // Apply opacity and cursor-not-allowed classes when tweet is empty
               onClick={saveTweet}
-              disabled={tweet.trim() === ''} // Disable button when tweet is empty
+              disabled={tweet.trim() === ''} 
             >
               Post
             </button>

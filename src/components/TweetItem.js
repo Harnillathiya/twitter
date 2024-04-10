@@ -5,7 +5,8 @@ import { Modal, Button, Box, Typography } from '@mui/material';
 import { CiBookmarkCheck } from "react-icons/ci";
 import { CiViewBoard } from "react-icons/ci";
 import { BiRepost } from "react-icons/bi";
-
+import "./TweetItem.css"
+import { v4 as uuid } from "uuid";
 
 import "./TweetItem.css";
 const style = {
@@ -41,8 +42,10 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     };
 
     const handleComment = () => {
-        // console.log( tweet.id, comment);
-        setCommentText(tweet.id, comment);
+        setCommentText(tweet.id, {
+            id: uuid(),
+            text: comment
+        });
         handleClose();
     };
     const changeComment = (e) => {
@@ -55,14 +58,14 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
         <div className="flex  p-3 items-center w-100" key={tweet.id}>
             <div className="flex w-full justify-between items-center">
                 <div className=" flex items-center">
-                    <button onClick={handleLike} className='hover:text-blue-500'>
+                    <Button onClick={handleLike} className=''>
                         <SlLike size={"24px"} />
-                    </button>
+                    </Button>
                     <div>{tweet.likes}</div>
-                    <button onClick={handleUnlike} className='hover:text-blue-500'>
+                    <Button onClick={handleUnlike} className=''>
                         <SlDislike size={"24px"} />
-                    </button>
-                </div> 
+                    </Button>
+                </div>
                 <Button onClick={handleOpen}><FaRegComment size={"24px"} /></Button>
                 <Modal
                     open={open}
@@ -84,16 +87,22 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
                         <Button onClick={handleClose} variant="contained" color="secondary" style={{ marginTop: '10px', marginLeft: '10px' }}>Close</Button>
                     </Box>
                 </Modal>
-                <div className=" flex items-center hover:text-blue-500">
-                    <CiBookmarkCheck size={"24px"} />
+                <div className=" flex items-center ">
+                    <Button>
+                        <CiBookmarkCheck size={"24px"} />
+                    </Button>
                     <p>0</p>
                 </div>
-                <div className="flex items-center hover:text-blue-500">
-                    <CiViewBoard size={"24px"} />
+                <div className="flex items-center ">
+                    <Button>
+                        <CiViewBoard size={"24px"} />
+                    </Button>
                     <p>0</p>
                 </div>
-                <div className=" flex items-center hover:text-blue-500">
-                    <BiRepost size={"24px"} />
+                <div className=" flex items-center ">
+                    <Button>
+                        <BiRepost size={"24px"} />
+                    </Button>
                     <p>0</p>
                 </div>
             </div>
