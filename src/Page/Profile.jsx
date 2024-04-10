@@ -5,7 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
-import { postData, profileCom } from "../StaticData";
+import { postData } from "../StaticData";
 
 const profileHeader = [
   {
@@ -35,6 +35,7 @@ const profileHeader = [
 ];
 
 const Profile = () => {
+  // eslint-disable-next-line no-unused-vars
   const [selectedTab, setSelectedTab] = useState("posts");
   // const [apiPostData, setApiData] = useState([]);
 
