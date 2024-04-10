@@ -26,7 +26,7 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
     //         return `${Math.floor(seconds / 86400)} days ago`;
     //     }
     // };
-    
+
     return (
         <div className='p-4'>
             <div>
@@ -60,7 +60,6 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
                                     unlikeTweet={onTweetUnLike}
                                     setCommentText={onAddComment}
                                 />
-                                {/* dispatch({ type: 'ADD_COMMENT', payload: { tweetId: tweet.id, comment: commentText } });  */}
                             </div>
                         ))}
                     </div>
