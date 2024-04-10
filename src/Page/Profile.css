@@ -176,3 +176,12 @@
   cursor: pointer;
   font-weight: 600;
 }
+.postdp-icon{
+  border-radius: 50px;
+}
+.postdata{
+  display: flex;
+}
+.postdata-flex{
+  display: flex;
+}

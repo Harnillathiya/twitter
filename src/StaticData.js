@@ -1,3 +1,5 @@
+import postDp from "./image/HD-wallpaper-whatsapp-dp-cartoon.jpg";
+
 export const name = "#VijayDeverakonda, #MrunalThakur";
 
 export const forYou = [
@@ -81,3 +83,14 @@ export const profileCom = {
     btn: "Subscribe to Premium",
   },
 };
+
+export const postData = [
+  {
+    icon: postDp,
+    userId: "World of Statistics",
+    userName: "@stats_feed",
+    dot: "·",
+    time: "16h",
+    content: "What was the fastest way you lost weight?",
+  },
+];
