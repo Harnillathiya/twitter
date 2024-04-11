@@ -1,0 +1,29 @@
+.comment-container {
+    padding: 20px;
+  }
+  
+  .tweet-comments {
+    margin-bottom: 20px;
+  }
+  
+  .comment-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .comment-avatar {
+    flex-shrink: 0;
+    margin-right: 10px;
+    /* Add styles for the avatar */
+  }
+  
+  .comment-content {
+    flex-grow: 1;
+  }
+  
+  .comment-text {
+    margin: 0;
+    /* Add styles for the comment text */
+  }
+  

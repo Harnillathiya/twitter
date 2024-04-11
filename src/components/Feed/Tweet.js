@@ -4,29 +4,21 @@ import TweetItem from './TweetItem';
 import ShowComments from './ShowComments';
 
 const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
-    // const [currentTime, setCurrentTime] = useState(new Date());
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setCurrentTime(new Date());
-    //     }, 1000);
-    //     return () => clearInterval(timer);
-    // }, []);
-
-    // const getTimeAgo = (timestamp) => {
-    //     const timeDifference = currentTime - timestamp;
-    //     const seconds = Math.floor(timeDifference / 1000);
-    //     if (seconds < 0) {
-    //         return `0 seconds ago`;
-    //     } else if (seconds < 60) {
-    //         return `${seconds} seconds ago`;
-    //     } else if (seconds < 3600) {
-    //         return `${Math.floor(seconds / 60)} minutes ago`;
-    //     } else if (seconds < 86400) {
-    //         return `${Math.floor(seconds / 3600)} hours ago`;
-    //     } else {
-    //         return `${Math.floor(seconds / 86400)} days ago`;
-    //     }
-    // };
+    const getTimeAgo = (timestamp) => {
+        const timeDifference = Date.now() - timestamp;
+        const seconds = Math.floor(timeDifference / 1000);
+        if (seconds < 0) {
+            return `0 seconds ago`;
+        } else if (seconds < 60) {
+            return `${seconds} seconds ago`;
+        } else if (seconds < 3600) {
+            return `${Math.floor(seconds / 60)} minutes ago`;
+        } else if (seconds < 86400) {
+            return `${Math.floor(seconds / 3600)} hours ago`;
+        } else {
+            return `${Math.floor(seconds / 86400)} days ago`;
+        }
+    };
 
     return (
         <div className='p-4'>
@@ -42,8 +34,10 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
                             <div className="flex ml-4 items-center">
                                 <h2>Harsa Dash</h2>
                                 <p className="text-gray-400 text-sm pl-2">@Harsa_Dash</p>
+                                {tweets.length > 0 && (
+                                    <p className="text-gray-400 text-sm pl-2">{getTimeAgo(tweets[0].timestamp)}</p>
+                                )}
                             </div>
-                            {/* <p>{getTimeAgo()}</p> */}
                         </div>
                     </div>
                 </div>
@@ -54,20 +48,19 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
                                 <button className="text-blue-500 hover:text-blue-700">
                                     {tweet.tweet}
                                 </button>
-                                {/* <p>{getTimeAgo(tweet.timestamp)} </p> */}
                                 <TweetItem
                                     tweet={tweet}
                                     likeTweet={onTweetLike}
                                     unlikeTweet={onTweetUnLike}
                                     setCommentText={onAddComment}
                                 />
+                                <ShowComments tweetComments={tweet.comments} />
                             </div>
                         ))}
-                         <ShowComments tweetComments={tweets.map(tweet => tweet.comments)} />
                     </div>
                 </div>
             </div>
-            
+
         </div>
     );
 };
