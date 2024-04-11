@@ -1,6 +1,7 @@
 // import React, { useState, useEffect } from 'react';
 import Avatar from 'react-avatar';
 import TweetItem from './TweetItem';
+import ShowComments from './ShowComments';
 
 const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
     // const [currentTime, setCurrentTime] = useState(new Date());
@@ -62,6 +63,7 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
                                 />
                             </div>
                         ))}
+                         <ShowComments tweetComments={tweets.map(tweet => tweet.comments)} />
                     </div>
                 </div>
             </div>
