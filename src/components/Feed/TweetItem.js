@@ -8,7 +8,6 @@ import { BiRepost } from "react-icons/bi";
 import "./TweetItem.css"
 import { v4 as uuid } from "uuid";
 
-import "./TweetItem.css";
 const style = {
     position: 'absolute',
     top: '50%',
@@ -22,48 +21,51 @@ const style = {
 };
 
 const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const [comment, setComment] = useState("");
-    const [submittedComment, setSubmittedComment] = useState(null);
 
     const handleOpen = () => {
         setOpen(true);
         setComment("");
-    }
+    };
+
     const handleClose = () => setOpen(false);
 
     const handleLike = () => {
-        likeTweet(tweet.id);
+        if (tweet && tweet.id) {
+            likeTweet(tweet.id);
+        }
     };
 
     const handleUnlike = () => {
-        unlikeTweet(tweet.id);
+        if (tweet && tweet.id) {
+            unlikeTweet(tweet.id);
+        }
     };
 
     const handleComment = () => {
-        setSubmittedComment(comment);
-        setCommentText(tweet.id, {
-            id: uuid(),
-            text: comment
-        });
-        // Close the modal
-        handleClose();
+        if (tweet && tweet.id) {
+            setCommentText(tweet.id, {
+                id: uuid(),
+                text: comment
+            });
+            handleClose();
+        }
     };
+
     const changeComment = (e) => {
-        setComment(e.target.value)
-
-    }
-
+        setComment(e.target.value);
+    };
 
     return (
-        <div className="flex  p-3 items-center w-100" key={tweet.id}>
+        <div className="flex p-3 items-center w-100" key={tweet?.id}>
             <div className="flex w-full justify-between items-center">
-                <div className=" flex items-center">
-                    <Button onClick={handleLike} className=''>
+                <div className="flex items-center">
+                    <Button onClick={handleLike}>
                         <SlLike size={"24px"} />
                     </Button>
-                    <div>{tweet.likes}</div>
-                    <Button onClick={handleUnlike} className=''>
+                    <div>{tweet?.likes}</div>
+                    <Button onClick={handleUnlike}>
                         <SlDislike size={"24px"} />
                     </Button>
                 </div>
@@ -88,38 +90,36 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
                         <Button onClick={handleClose} variant="contained" color="secondary" style={{ marginTop: '10px', marginLeft: '10px' }}>Close</Button>
                     </Box>
                 </Modal>
-                <div className=" flex items-center ">
+                <div className="flex items-center">
                     <Button>
                         <CiBookmarkCheck size={"24px"} />
                     </Button>
                     <p>0</p>
                 </div>
-                <div className="flex items-center ">
+                <div className="flex items-center">
                     <Button>
                         <CiViewBoard size={"24px"} />
                     </Button>
                     <p>0</p>
                 </div>
-                <div className=" flex items-center ">
+                <div className="flex items-center">
                     <Button>
                         <BiRepost size={"24px"} />
                     </Button>
                     <p>0</p>
                 </div>
-            </div>
-            <div className='showcomment'>
-                <div>
-                    <Box>
+                <div className='showcomment'>
+                    <div>
                         <ul>
-                            {submittedComment && (
-                                <li>{submittedComment}</li>
+                            {/* Render the submitted comment */}
+                            {tweet && (
+                                <li>{tweet.comment}</li>
                             )}
                         </ul>
-                    </Box>
+                    </div>
                 </div>
             </div>
         </div>
-
     );
 };
 
