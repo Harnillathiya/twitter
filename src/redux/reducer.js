@@ -32,7 +32,7 @@ const tweetsReducer = (state = initialState, action) => {
       const { tweetId, comment } = action.payload;
       const updatedTweets = state.tweets.map((tweet) =>
         tweet.id === tweetId
-          ? { ...tweet, comments: [...(tweet.comments || []), comment] }
+          ? { ...tweet, comments: [comment, ...(tweet.comments || [])], commentsCount: (tweet.commentsCount || 0) + 1 }
           : tweet
       );
       return {
