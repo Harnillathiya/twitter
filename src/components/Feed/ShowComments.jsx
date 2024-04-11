@@ -7,8 +7,6 @@ import Avatar from 'react-avatar';
 const ShowComments = () => {
     const tweets = useSelector((state) => state.tweets.tweets);
     
-    
-
     return (
         <div className="comment-container border-gray-200">
             {/* <h2><BiShow /></h2> */}
