@@ -1,8 +1,9 @@
 import React from 'react'
 import CreatePost from './CreatePost'
 import Tweet from "./Tweet";
+import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from "react-redux";
-import { addTweet, likeTweet, unlikeTweet, addComment } from '../../redux/action';
+import { addTweet, likeTweet, unlikeTweet, addComment, likeComment, dislikeComment } from '../../redux/action';
 
 
 const Feed = () => {
@@ -24,17 +25,29 @@ const Feed = () => {
   const onAddComment = (tweetId, comment) => {
     dispatch(addComment(tweetId, comment));
   };
+  const onLikeComment = (tweetId, commentId) => {
+    dispatch(likeComment(tweetId, commentId));
+  }
+
+  const onDislikeComment = (tweetId, commentId) => {
+    dispatch(dislikeComment(tweetId, commentId));
+  }
+
 
   return (
-    <div className='border border-gray-200'>
-      <CreatePost onSaveTweet={onSaveTweet} />
-      <Tweet
-        tweets={tweets.tweets}
-        onTweetLike={onTweetLike}
-        onTweetUnLike={onTweetUnLike}
-        onAddComment={onAddComment}
-      />
-    </div>
+    <Container maxWidth="lg">
+      <div className='border border-gray-200'>
+        <CreatePost onSaveTweet={onSaveTweet} />
+        <Tweet
+          tweets={tweets.tweets}
+          onTweetLike={onTweetLike}
+          onTweetUnLike={onTweetUnLike}
+          onAddComment={onAddComment}
+          onLikeComment={onLikeComment}
+          onDislikeComment={onDislikeComment}
+        />
+      </div>
+    </Container>
   )
 }
 

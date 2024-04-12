@@ -4,6 +4,7 @@ import TweetItem from './TweetItem';
 import ShowComments from './ShowComments';
 
 const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
+    
     const getTimeAgo = (timestamp) => {
         const timeDifference = Date.now() - timestamp;
         const seconds = Math.floor(timeDifference / 1000);
@@ -19,7 +20,6 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
             return `${Math.floor(seconds / 86400)} days ago`;
         }
     };
-
     return (
         <div className='p-4'>
             <div>
@@ -54,7 +54,7 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
                                     unlikeTweet={onTweetUnLike}
                                     setCommentText={onAddComment}
                                 />
-                                <ShowComments tweetComments={tweet.comments} />
+                                <ShowComments comments={tweet.comments} tweets={tweet.id}/>
                             </div>
                         ))}
                     </div>

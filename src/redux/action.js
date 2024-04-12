@@ -4,6 +4,9 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const LIKE_TWEET = 'LIKE_TWEET';
 export const UNLIKE_TWEET = 'UNLIKE_TWEET';
 
+export const LIKE_COMMENT = 'LIKE_COMMENT';
+export const DISLIKE_COMMENT = 'DISLIKE_COMMENT';
+
 export const addTweet = (tweet) => ({
   type: ADD_TWEET,
   payload: tweet,
@@ -12,6 +15,15 @@ export const addTweet = (tweet) => ({
 export const addComment = (tweetId, comment) => ({
   type: ADD_COMMENT,
   payload: { tweetId, comment },
+});
+export const likeComment = (tweetId, commentId) => ({
+  type: LIKE_COMMENT,
+  payload: { tweetId, commentId }
+});
+
+export const dislikeComment = (tweetId, commentId) => ({
+  type: DISLIKE_COMMENT,
+  payload: { tweetId, commentId }
 });
 
 export const likeTweet = (index) => ({
