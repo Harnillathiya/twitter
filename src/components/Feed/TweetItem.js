@@ -60,7 +60,7 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     const changeComment = (e) => {
         setComment(e.target.value);
     };
-   
+
 
     return (
         <div className="flex p-3 items-center w-100" key={tweet?.id}>
@@ -74,7 +74,13 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
                         <SlDislike size={"24px"} />
                     </Button>
                 </div>
-                <Button onClick={handleOpen}><FaRegComment size={"24px"} /></Button>
+                <Button onClick={handleOpen}><FaRegComment size={"24px"} />
+                    <div className='showcomment ml-4'>
+                        {tweet && (
+                            <p>{tweet.comments ? tweet.comments.length : 0} </p>
+                        )}
+                    </div>
+                </Button>
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -112,16 +118,6 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
                         <BiRepost size={"24px"} />
                     </Button>
                     <p>0</p>
-                </div>
-                <div className='showcomment'>
-                    <div>
-                        <ul>
-                            {/* Render the submitted comment */}
-                            {tweet && (
-                                <li>{tweet.comment}</li>
-                            )}
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
