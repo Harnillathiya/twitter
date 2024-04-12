@@ -3,8 +3,8 @@ import Avatar from 'react-avatar';
 import TweetItem from './TweetItem';
 import ShowComments from './ShowComments';
 
-const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
-    
+const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment, onDislikeComment, onLikeComment }) => {
+
     const getTimeAgo = (timestamp) => {
         const timeDifference = Date.now() - timestamp;
         const seconds = Math.floor(timeDifference / 1000);
@@ -54,7 +54,12 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment }) => {
                                     unlikeTweet={onTweetUnLike}
                                     setCommentText={onAddComment}
                                 />
-                                <ShowComments comments={tweet.comments} tweets={tweet.id}/>
+                                <ShowComments
+                                    comments={tweet.comments}
+                                    tweetId={tweet.id}
+                                    likeComment={onLikeComment}
+                                    dislikeComment={onDislikeComment}
+                                />
                             </div>
                         ))}
                     </div>

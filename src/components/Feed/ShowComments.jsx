@@ -1,4 +1,3 @@
-import React from 'react';
 //{ import { BiShow } from "react-icons/bi";
 import './ShowComments.css';
 import { Button } from '@mui/material';
@@ -7,29 +6,19 @@ import { FcLike, FcDislike } from "react-icons/fc";
 import Avatar from 'react-avatar';
 // import TweetItem from './TweetItem';
 
-const ShowComments = ({ comments = [], tweetid, tweet, likeComment, dislikeComment }) => {
+const ShowComments = ({ comments = [], tweetId, likeComment, dislikeComment }) => {
 
-    // const handleLikeComment = () => {
-    //     if (tweet && tweet.id) {
-    //         likeComment(tweet.id);
-    //     }
-    // };
-
-    // const handleDislikeComment = () => {
-    //     if (tweet && tweet.id) {
-    //         dislikeComment(tweet.id);
-    //     }
-    // };
-    const handleLikeComment = (tweetid, comments) => {
-        likeComment(tweetid, comments);
-        console.log(tweetid,"gggggggggggg");
+  
+    const handleLikeComment = (commentId) => {
+        // console.log("tweetsid",comments);
+        // console.log(commentIndex,"");
+            likeComment(tweetId, commentId);
     };
-
-    const handleDislikeComment = (tweetid, comments) => {
-        dislikeComment(tweetid, comments);
+    const handleDislikeComment = (commentId) => {
+            dislikeComment(tweetId, comments);
     };
-
-    console.log(tweetid)
+    // console.log(tweetsid)
+    console.log("comments",comments);
     return (
         <div className="comment-container border-gray-200">
             {/* <h2><BiShow /></h2> */}
@@ -51,11 +40,11 @@ const ShowComments = ({ comments = [], tweetid, tweet, likeComment, dislikeComme
 
                             <p className="comment-text">{comment.text}</p>
                             <div className="flex items-center">
-                                <Button onClick={() => handleLikeComment(tweetid, comments)}>
+                                <Button onClick={() => handleLikeComment(comment.id)}>
                                     <FcLike size={"15px"} />
                                 </Button>
-                                <div>{comment.likes}</div>
-                                <Button onClick={() => handleDislikeComment(tweetid, comments)}>
+                                <div>{comment.likes} </div>
+                                <Button onClick={() => handleDislikeComment(comment.id)}>
                                     <FcDislike size={"15px"} />
                                 </Button>
                             </div>

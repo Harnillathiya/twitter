@@ -15,7 +15,6 @@ const Feed = () => {
   }
 
   const onTweetLike = (id) => {
-    // console.log(id)
     dispatch(likeTweet(id))
   }
 
@@ -26,11 +25,11 @@ const Feed = () => {
     dispatch(addComment(tweetId, comment));
   };
   const onLikeComment = (tweetId, commentId) => {
-    dispatch(likeComment(tweetId, commentId));
+    dispatch(likeComment( tweetId,commentId));
   }
 
-  const onDislikeComment = (tweetId, commentId) => {
-    dispatch(dislikeComment(tweetId, commentId));
+  const onDislikeComment = ( tweetId, commentId) => {
+    dispatch(dislikeComment( tweetId, commentId));
   }
 
 
