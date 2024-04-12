@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import twitterlogo from "../image/twitterlogo.png";
 import { IoMdHome } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
@@ -9,13 +9,44 @@ import { CgProfile } from "react-icons/cg";
 import { CiCircleMore } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { Link } from "react-router-dom";
-
 import "../App.css";
+import Button from "@mui/material/Button";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaRegBookmark } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
+import { MdOutlineMonetizationOn } from "react-icons/md";
+import { GoProjectRoadmap } from "react-icons/go";
+import { IoSettingsSharp } from "react-icons/io5";
+
+const style = {
+  position: "absolute",
+  top: "40%",
+  left: "12%",
+  transform: "translate(-50%, -50%)",
+  width: 300,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: 5,
+};
 
 const Leftsidebar = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <div style={{ position: "fixed", top: 0, marginLeft: "100px" }}>
+      <div style={{ position: "fixed", top: 0 }}>
         <div>
           <img width={"40px"} src={twitterlogo} alt="twitter-logo" />
         </div>
@@ -72,7 +103,51 @@ const Leftsidebar = () => {
             <div className="box">
               <CiCircleMore size={"26"} />
               <Link to="/more">
-                <span>More</span>
+                <Button onClick={handleOpen} className="more">
+                  More
+                </Button>
+                <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  open={open}
+                  onClose={handleClose}
+                  closeAfterTransition
+                  slots={{ backdrop: Backdrop }}
+                  slotProps={{
+                    backdrop: {
+                      timeout: 500,
+                    },
+                  }}
+                >
+                  <Fade in={open}>
+                    <Box sx={style}>
+                      <div className="modalopen-sidebar">
+                        <FaXTwitter size={26} />
+                        <Link className="premium">Premium</Link>
+                      </div>
+                      <div className="modalopen-sidebar">
+                        <FaRegBookmark size={26} />
+                        <Link className="premium">Bookmarks</Link>
+                      </div>
+                      <div className="modalopen-sidebar">
+                        <FaUserGroup size={26} />
+                        <Link className="premium">Communities</Link>
+                      </div>
+                      <div className="modalopen-sidebar">
+                        <MdOutlineMonetizationOn size={26} />
+                        <Link className="premium">Monetization</Link>
+                      </div>
+                      <div className="modalopen-sidebar">
+                        <GoProjectRoadmap size={26} />
+                        <Link className="premium">Pro</Link>
+                      </div>
+                      <div className="modalopen-sidebar">
+                        <IoSettingsSharp size={26} />
+                        <Link className="premium">Settings and privacy</Link>
+                      </div>
+                    </Box>
+                  </Fade>
+                </Modal>
               </Link>
             </div>
           </div>
