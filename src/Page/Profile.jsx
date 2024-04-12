@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { GoArrowLeft } from "react-icons/go";
 import "./Profile.css";
@@ -5,7 +6,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
-import { profileCom } from "../StaticData";
+import { postData } from "../StaticData";
 
 const profileHeader = [
   {
@@ -36,10 +37,12 @@ const profileHeader = [
 
 const Profile = () => {
   const [selectedTab, setSelectedTab] = useState("posts");
-  const selectedTabHandler = (id) => {
+
+  const selectedTabHandler = (item, id) => {
     setSelectedTab(id);
-    console.log(id);
+    console.log("item", item);
   };
+
   return (
     <div className="profile-main">
       <div className="profile-main-box">
@@ -96,16 +99,36 @@ const Profile = () => {
               );
             })}
           </div>
-          <div className="profilecom-main">
-            <p className="profilecom-textone">
-              {profileCom[selectedTab]?.textOne}
-            </p>
-            <p className="profilecom-texttwo">
-              {profileCom[selectedTab]?.textTwo}
-            </p>
-            <Button variant="outlined" className="profilecom-btn">
-              {profileCom[selectedTab]?.btn}
-            </Button>
+          <div>
+            {postData.map((item, index) => {
+              return (
+                <div key={index} className="postdata-mainflex">
+                  <div className="postdata-flex">
+                    <div>
+                      <img
+                        src={item.icon}
+                        alt=""
+                        height={45}
+                        width={45}
+                        className="postdp-icon"
+                      />
+                    </div>
+                    <div>
+                      <div className="postdata">
+                        <p className="postdata-id">{item.userId}</p>
+                        <p className="postdata-username">{item.userName}</p>
+                        <p className="postdata-dot">{item.dot}</p>
+                        <p className="postdata-time">{item.time}</p>
+                      </div>
+                      <p className="postdata-content">{item.content}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="postdata-tripledot">...</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

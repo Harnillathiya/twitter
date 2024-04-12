@@ -1,3 +1,5 @@
+import postDp from "./image/virat-kohli.png";
+
 export const name = "#VijayDeverakonda, #MrunalThakur";
 
 export const forYou = [
@@ -81,3 +83,38 @@ export const profileCom = {
     btn: "Subscribe to Premium",
   },
 };
+
+export const postData = [
+  {
+    icon: postDp,
+    userId: "World of Statistics",
+    userName: "@stats_feed",
+    dot: "·",
+    time: "16h",
+    content: "What was the fastest way you lost weight?",
+  },
+  {
+    icon: postDp,
+    userId: "Crypto Omega",
+    userName: "@MineOmegaCoin",
+    dot: "·",
+    time: "Apr 9",
+    content: "Here is a farming trick for small accounts! ",
+  },
+  {
+    icon: postDp,
+    userId: "Ash Crypto",
+    userName: "@stats_feed",
+    dot: "·",
+    time: "16h",
+    content: "I will give $500 Bitcoin to one person in next 24hrs.",
+  },
+  {
+    icon: postDp,
+    userId: "World of Statistics",
+    userName: "@stats_feed",
+    dot: "·",
+    time: "16h",
+    content: "What was the fastest way you lost weight?",
+  },
+];

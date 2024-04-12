@@ -1,0 +1,37 @@
+.massages-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+}
+.settingemailicon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.messages {
+  font-size: 28px;
+  font-weight: 700;
+}
+.welcome {
+  font-size: 32px;
+  font-weight: 700;
+  padding-left: 25px;
+  padding-top: 25px;
+  width: 283px;
+  line-height: 33px;
+}
+.drop {
+  padding-left: 25px;
+  width: 351px;
+  color: cadetblue;
+  padding-top: 20px;
+}
+.writeamessage {
+  border-radius: 40px !important;
+  font-weight: 600 !important;
+  margin-top: 30px !important;
+  margin-left: 30px !important;
+  text-transform: capitalize !important;
+  padding: 10px 30px !important;
+  font-size: 20px !important;
+}
