@@ -6,7 +6,7 @@ import ruturaj from "../image/102.png";
 
 const Rightsidebar = () => {
   return (
-    <div> 
+    <div style={{ position: "fixed", top: 0, right: 0, marginRight: "100px" }}>
       <div className="flex items-center p-2 bg-gray-100 rounded-full outline-none">
         <CiSearch />
         <input
