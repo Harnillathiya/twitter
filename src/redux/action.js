@@ -16,14 +16,14 @@ export const addComment = (tweetId, comment) => ({
   type: ADD_COMMENT,
   payload: { tweetId, comment },
 });
-export const likeComment = (tweetId, commentId) => ({
+export const likeComment = (tweetId, commentId) => ({ 
   type: LIKE_COMMENT,
-  payload: { tweetId, commentId }
+  payload: {tweetId, commentId} 
 });
 
 export const dislikeComment = (tweetId, commentId) => ({
   type: DISLIKE_COMMENT,
-  payload: { tweetId, commentId }
+  payload:  {tweetId, commentId}
 });
 
 export const likeTweet = (index) => ({

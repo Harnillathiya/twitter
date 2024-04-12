@@ -1,17 +1,21 @@
 import { combineReducers } from 'redux';
 
-import { ADD_TWEET } from './action';
+import { ADD_TWEET, LIKE_COMMENT, DISLIKE_COMMENT } from './action';
 import { LIKE_TWEET, UNLIKE_TWEET, ADD_COMMENT } from '../redux/action';
 const initialState = {
   tweets: [],
 };
 
+
+
 const tweetsReducer = (state = initialState, action) => {
   switch (action.type) {
+    
     case ADD_TWEET:
       return {
         ...state,
         tweets: [action.payload, ...state.tweets],
+       
       };
     case LIKE_TWEET:
       return {
@@ -26,24 +30,70 @@ const tweetsReducer = (state = initialState, action) => {
         tweets: state.tweets.map((tweet) =>
           tweet.id === action.payload ? { ...tweet, likes: tweet.likes - 1 } : tweet
         )
-
       };
     case ADD_COMMENT:
       const { tweetId, comment } = action.payload;
+      console.log(tweetId);
       const updatedTweets = state.tweets.map((tweet) =>
         tweet.id === tweetId
           ? {
             ...tweet,
             comments: [comment, ...(tweet.comments || [])],
             commentsCount: (tweet.commentsCount || 0) + 1,
-            likeCommentCount: (tweet.likeCommentCount || 0),
-            dislikeCommentCount: (tweet.dislikeCommentCount || 0)
           }
           : tweet
       );
       return {
         ...state,
         tweets: updatedTweets,
+      };
+    case LIKE_COMMENT:
+      // return {
+      //   ...state,
+      //   comments: state.comments?.map((comment) =>
+      //   comment.id  === action.payload ? { ...comment, likes: comment.likes + 1 } : comment
+      //   )
+      // };
+      console.log("comment Id", action.payload.commentId);
+      console.log("tweetId", action.payload.tweetId);
+      const data = 
+       {
+        ...state,
+        tweets: state.tweets.map((tweet) => {
+          if (tweet.id === action.payload.tweetId) {
+            return {
+              ...tweet,
+              comments: tweet.comments.map((comment) =>
+                comment.id === action.payload.commentId
+                  ? { ...comment, likes: comment.likes + 1 }
+                  : comment
+              )
+            };
+          }
+          return tweet;
+        })
+        
+      };
+      console.log(data, ".........");
+      return data
+      
+    
+    case DISLIKE_COMMENT:
+      return {
+        ...state,
+        tweets: state.tweets.map((tweet) => {
+          if (tweet.id === action.tweetId) {
+            return {
+              ...tweet,
+              comments: tweet.comments.map((comment) =>
+                comment.id === action.commentId
+                  ? { ...comment, likes: comment.likes - 1 }
+                  : comment
+              )
+            };
+          }
+          return tweet;
+        })
       };
     default:
       return state;

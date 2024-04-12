@@ -51,7 +51,8 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
         if (tweet && tweet.id) {
             setCommentText(tweet.id, {
                 id: uuid(),
-                text: comment
+                text: comment,
+                likes: 0
             });
             handleClose();
         }
