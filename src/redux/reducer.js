@@ -10,12 +10,12 @@ const initialState = {
 
 const tweetsReducer = (state = initialState, action) => {
   switch (action.type) {
-    
+
     case ADD_TWEET:
       return {
         ...state,
         tweets: [action.payload, ...state.tweets],
-       
+
       };
     case LIKE_TWEET:
       return {
@@ -25,6 +25,7 @@ const tweetsReducer = (state = initialState, action) => {
         )
       };
     case UNLIKE_TWEET:
+      console.log(UNLIKE_TWEET);
       return {
         ...state,
         tweets: state.tweets.map((tweet) =>
@@ -48,16 +49,10 @@ const tweetsReducer = (state = initialState, action) => {
         tweets: updatedTweets,
       };
     case LIKE_COMMENT:
-      // return {
-      //   ...state,
-      //   comments: state.comments?.map((comment) =>
-      //   comment.id  === action.payload ? { ...comment, likes: comment.likes + 1 } : comment
-      //   )
-      // };
       console.log("comment Id", action.payload.commentId);
       console.log("tweetId", action.payload.tweetId);
-      const data = 
-       {
+      const data =
+      {
         ...state,
         tweets: state.tweets.map((tweet) => {
           if (tweet.id === action.payload.tweetId) {
@@ -72,21 +67,21 @@ const tweetsReducer = (state = initialState, action) => {
           }
           return tweet;
         })
-        
+
       };
-      console.log(data, ".........");
+      // console.log(data, ".........");
       return data
-      
-    
     case DISLIKE_COMMENT:
-      return {
+      console.log("comment Id", action.payload.commentId);
+      console.log("tweetId", action.payload.tweetId);
+      const Data = {
         ...state,
         tweets: state.tweets.map((tweet) => {
-          if (tweet.id === action.tweetId) {
+          if (tweet.id === action.payload.tweetId) {
             return {
               ...tweet,
               comments: tweet.comments.map((comment) =>
-                comment.id === action.commentId
+                comment.id === action.payload.commentId[0].id
                   ? { ...comment, likes: comment.likes - 1 }
                   : comment
               )
@@ -95,6 +90,10 @@ const tweetsReducer = (state = initialState, action) => {
           return tweet;
         })
       };
+      // console.log(Data, ".........");
+      return Data
+
+
     default:
       return state;
   }
