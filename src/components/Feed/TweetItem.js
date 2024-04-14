@@ -32,6 +32,7 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     const handleClose = () => setOpen(false);
 
     const handleLike = () => {
+        console.log(likeTweet);
         if (tweet && tweet.id) {
             likeTweet(tweet.id);
         }

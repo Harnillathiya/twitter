@@ -10,15 +10,12 @@ const ShowComments = ({ comments = [], tweetId, likeComment, dislikeComment }) =
 
   
     const handleLikeComment = (commentId) => {
-        // console.log("tweetsid",comments);
-        // console.log(commentIndex,"");
             likeComment(tweetId, commentId);
     };
     const handleDislikeComment = (commentId) => {
             dislikeComment(tweetId, comments);
     };
-    // console.log(tweetsid)
-    console.log("comments",comments);
+    // console.log("comments",comments);
     return (
         <div className="comment-container border-gray-200">
             {/* <h2><BiShow /></h2> */}
