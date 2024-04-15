@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { FaImage } from "react-icons/fa";
 import { MdOutlineGifBox } from "react-icons/md";
 import { BiPoll } from "react-icons/bi";
@@ -10,12 +10,11 @@ import "./Feed.css";
 import { v4 as uuid } from "uuid";
 
 const CreatePost = (props) => {
-
   const [tweet, setTweet] = useState("");
   const [error, setError] = useState(null);
 
   const saveTweet = () => {
-    if (tweet.trim() === '') {
+    if (tweet.trim() === "") {
       setError("Tweet cannot be empty.");
       return;
     }
@@ -24,11 +23,12 @@ const CreatePost = (props) => {
       id: uuid(),
       tweet: tweet,
       timestamp: new Date().getTime(),
-      likes: 0
+      likes: 0,
     };
     setTweet("");
     setError(null);
     props.onSaveTweet(tweetPayload);
+    console.log("tweetPayload",tweetPayload);
   };
 
   return (
@@ -85,14 +85,16 @@ const CreatePost = (props) => {
               </a>
             </div>
             <button
-              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === '' && 'opacity-50 cursor-not-allowed'}`} // Apply opacity and cursor-not-allowed classes when tweet is empty
+              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${
+                tweet.trim() === "" && "opacity-50 cursor-not-allowed"
+              }`} // Apply opacity and cursor-not-allowed classes when tweet is empty
               onClick={saveTweet}
-              disabled={tweet.trim() === ''} 
+              disabled={tweet.trim() === ""}
             >
               Post
             </button>
           </div>
-          {error && <p className="text-red-500 ml-4">{error}</p>} 
+          {error && <p className="text-red-500 ml-4">{error}</p>}
         </div>
       </div>
     </div>

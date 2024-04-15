@@ -118,3 +118,4 @@ export const postData = [
     content: "What was the fastest way you lost weight?",
   },
 ];
+

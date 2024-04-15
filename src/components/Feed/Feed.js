@@ -1,10 +1,17 @@
-import React from 'react'
-import CreatePost from './CreatePost'
+import React from "react";
+import CreatePost from "./CreatePost";
 import Tweet from "./Tweet";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
-import { addTweet, likeTweet, unlikeTweet, addComment, likeComment, dislikeComment } from '../../redux/action';
-
+import {
+  addTweet,
+  likeTweet,
+  unlikeTweet,
+  addComment,
+  likeComment,
+  dislikeComment,
+  // showTweet
+} from "../../redux/action";
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -12,30 +19,33 @@ const Feed = () => {
 
   const onSaveTweet = (payload) => {
     dispatch(addTweet(payload));
-  }
+  };
 
   const onTweetLike = (id) => {
-    dispatch(likeTweet(id))
-  }
+    dispatch(likeTweet(id));
+  };
 
   const onTweetUnLike = (id) => {
-    dispatch(unlikeTweet(id))
-  }
+    dispatch(unlikeTweet(id));
+  };
   const onAddComment = (tweetId, comment) => {
     dispatch(addComment(tweetId, comment));
   };
   const onLikeComment = (tweetId, commentId) => {
-    dispatch(likeComment( tweetId,commentId));
-  }
+    dispatch(likeComment(tweetId, commentId));
+  };
 
-  const onDislikeComment = ( tweetId, commentId) => {
-    dispatch(dislikeComment( tweetId, commentId));
-  }
+  const onDislikeComment = (tweetId, commentId) => {
+    dispatch(dislikeComment(tweetId, commentId));
+  };
 
+  // const onShowTweet=(tweet)=>{
+  //   dispatch(showTweet(tweet))
+  // }
 
   return (
     <Container maxWidth="lg">
-      <div className='border border-gray-200'>
+      <div className="border border-gray-200">
         <CreatePost onSaveTweet={onSaveTweet} />
         <Tweet
           tweets={tweets.tweets}
@@ -44,10 +54,11 @@ const Feed = () => {
           onAddComment={onAddComment}
           onLikeComment={onLikeComment}
           onDislikeComment={onDislikeComment}
+          // onShowTweet={onShowTweet}
         />
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;

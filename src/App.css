@@ -76,7 +76,7 @@
 }
 .searchbar {
   display: grid;
-  grid-template-columns: 1fr 70px;
+  grid-template-columns: 1fr 22px;
   padding: 20px;
   align-items: center;
 }
@@ -142,6 +142,7 @@
 }
 .searchbar-fix {
   background-color: whitesmoke;
+  border: 1px solid black;
 }
 .explore-setting {
   display: flex;
@@ -161,6 +162,7 @@
 }
 .foryou-borderbox {
   border: 1px solid black;
+  margin-top: 151px;
 }
 .setting-icon {
   cursor: pointer;
