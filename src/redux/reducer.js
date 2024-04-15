@@ -25,11 +25,10 @@ const tweetsReducer = (state = initialState, action) => {
         )
       };
     case UNLIKE_TWEET:
-      console.log(UNLIKE_TWEET);
       return {
         ...state,
         tweets: state.tweets.map((tweet) =>
-          tweet.id === action.payload ? { ...tweet, likes: tweet.likes - 1 } : tweet
+          tweet.id === action.payload && tweet.likes > 0 ? { ...tweet, likes: tweet.likes - 1 } : tweet
         )
       };
     case ADD_COMMENT:
@@ -81,7 +80,7 @@ const tweetsReducer = (state = initialState, action) => {
             return {
               ...tweet,
               comments: tweet.comments.map((comment) =>
-                comment.id === action.payload.commentId[0].id
+                comment.id === action.payload.commentId && comment.likes > 0
                   ? { ...comment, likes: comment.likes - 1 }
                   : comment
               )
