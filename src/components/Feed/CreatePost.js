@@ -59,8 +59,14 @@ const CreatePost = (props) => {
               placeholder="What is happening?!"
               onChange={(e) => {
                 setTweet(e.target.value);
-                setError(null); // Clear error message on input change
+                setError(null); 
               }}
+              style={{
+                borderRadius: '10px',
+                padding: '15px',
+                marginBottom: '15px',
+              }}
+
             />
           </div>
           <div className="flex items-center justify-between p-4 border-b border-gray-300">
@@ -87,12 +93,12 @@ const CreatePost = (props) => {
             <button
               className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === '' && 'opacity-50 cursor-not-allowed'}`} // Apply opacity and cursor-not-allowed classes when tweet is empty
               onClick={saveTweet}
-              disabled={tweet.trim() === ''} 
+              disabled={tweet.trim() === ''}
             >
               Post
             </button>
           </div>
-          {error && <p className="text-red-500 ml-4">{error}</p>} 
+          {error && <p className="text-red-500 ml-4">{error}</p>}
         </div>
       </div>
     </div>
