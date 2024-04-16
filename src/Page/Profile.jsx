@@ -6,9 +6,10 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
-import { postData } from "../StaticData";
+import Posts from "../Profile/Posts";
+import Highlight from "../Profile/Highlight";
 
-const profileHeader = [
+export const profileHeader = [
   {
     id: "posts",
     text: "Posts",
@@ -38,9 +39,8 @@ const profileHeader = [
 const Profile = () => {
   const [selectedTab, setSelectedTab] = useState("posts");
 
-  const selectedTabHandler = (item, id) => {
-    setSelectedTab(id);
-    console.log("item", item);
+  const selectedTabHandler = (item) => {
+    setSelectedTab(item);
   };
 
   return (
@@ -54,20 +54,22 @@ const Profile = () => {
           <p className="post-text">0 Posts</p>
         </div>
       </div>
-      <div className="avatar-box">
-        <Avatar
-          size={130}
-          icon={<UserOutlined />}
-          className="avatar-position"
-        />
-      </div>
       <div>
-        <div className="main-profile-button">
-          <Button variant="outlined" className="profile-button">
-            Set up profile
-          </Button>
-        </div>
         <div>
+          <div className="avatar-btn-flex">
+            <div className="avatar-box">
+              <Avatar
+                size={130}
+                icon={<UserOutlined />}
+                className="avatar-position"
+              />
+            </div>
+            <div className="main-profile-button">
+              <Button variant="outlined" className="profile-button">
+                Set up profile
+              </Button>
+            </div>
+          </div>
           <p className="profile-rahul-text">Rahul Dholakiya</p>
           <p className="profile-username-text">@rahul_6849</p>
           <div className="date-joined-flex">
@@ -86,50 +88,23 @@ const Profile = () => {
               <span className="one">0</span>Followers
             </p>
           </div>
-          <div className="profile-header">
-            {profileHeader.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => selectedTabHandler(item.id)}
-                  className="profileheader-text"
-                >
-                  {item.text}
-                </div>
-              );
-            })}
-          </div>
           <div>
-            {postData.map((item, index) => {
-              return (
-                <div key={index} className="postdata-mainflex">
-                  <div className="postdata-flex">
-                    <div>
-                      <img
-                        src={item.icon}
-                        alt=""
-                        height={45}
-                        width={45}
-                        className="postdp-icon"
-                      />
-                    </div>
-                    <div>
-                      <div className="postdata">
-                        <p className="postdata-id">{item.userId}</p>
-                        <p className="postdata-username">{item.userName}</p>
-                        <p className="postdata-dot">{item.dot}</p>
-                        <p className="postdata-time">{item.time}</p>
-                      </div>
-                      <p className="postdata-content">{item.content}</p>
-                    </div>
+            <div className="profile-header">
+              {profileHeader.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => selectedTabHandler(item.id)}
+                    className="profileheader-text"
+                  >
+                    {item.text}
                   </div>
-                  <div>
-                    <p className="postdata-tripledot">...</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
+          <div>{selectedTab === "posts" ? <Posts /> : null}</div>
+          <div>{selectedTab === "highlights" ? <Highlight /> : null}</div>
         </div>
       </div>
     </div>
