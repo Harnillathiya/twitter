@@ -13,7 +13,7 @@ const ShowComments = ({ comments = [], tweetId, likeComment, dislikeComment }) =
             likeComment(tweetId, commentId);
     };
     const handleDislikeComment = (commentId) => {
-            dislikeComment(tweetId, comments);
+            dislikeComment(tweetId, commentId);
     };
     // console.log("comments",comments);
     return (
