@@ -1,14 +1,8 @@
-import React from 'react'
-import Foryou from './Foryou'
+import React from "react";
+import Foryou from "./Foryou";
 
 const Trending = () => {
-  return (
-    <>
-      <div>
-        <Foryou />
-      </div>
-    </>
-  )
-}
+  return <Foryou />;
+};
 
-export default Trending
+export default Trending;

@@ -2,13 +2,7 @@ import React from "react";
 import Foryou from "./Foryou";
 
 const Entertainment = () => {
-  return (
-    <div>
-      <div>
-       <Foryou />   
-      </div>
-    </div>
-  );
+  return <Foryou />;
 };
 
 export default Entertainment;
