@@ -6,8 +6,8 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
-import Posts from "../Profile/Posts";
-import Highlight from "../Profile/Highlight";
+import Posts from "../components/Profile/Posts";
+import Highlight from "../components/Profile/Highlight";
 
 export const profileHeader = [
   {
