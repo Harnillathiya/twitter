@@ -2,7 +2,10 @@ import React from "react";
 import Foryou from "./Foryou";
 
 const Entertainment = () => {
-  return <Foryou />;
+  return (
+
+       <Foryou />   
+  );
 };
 
 export default Entertainment;

@@ -36,16 +36,6 @@ export const likeTweet = (index) => ({
 });
 
 export const unlikeTweet = (index) => ({
-  type: UNLIKE_TWEET,
-  payload: index,
-});
-
-export const showTweet = (tweet) => ({
-  type: SHOW_TWEET,
-  payload: tweet,
-});
-
-export const addToHighlight = (tweet) => ({
-  type: ADD_TO_HIGHLIGHT,
-  payload: tweet,
+    type: UNLIKE_TWEET,
+    payload: index
 });

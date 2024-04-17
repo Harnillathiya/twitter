@@ -115,8 +115,6 @@
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  /* position: sticky;
-  top: 20%; */
 }
 .nametwo-text {
   font-weight: bold;
@@ -138,10 +136,10 @@
 }
 .searchbar-color {
   background-color: lightblue;
-  /* width: 638px; */
 }
 .searchbar-fix {
   background-color: whitesmoke;
+  position: sticky;
 }
 .explore-setting {
   display: flex;
@@ -170,10 +168,7 @@
   justify-content: space-between;
   align-items: center;
 }
-/* .explore-locations{
-  padding-top: 18px;
-  padding-left: 15px;
-} */
+
 .rightarrow-flex {
   display: flex;
   align-items: center;
