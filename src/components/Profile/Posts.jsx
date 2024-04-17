@@ -1,5 +1,6 @@
 import React from "react";
-import { postData } from "../StaticData";
+import { postData } from "../../StaticData";
+
 
 const Posts = () => {
   return (
