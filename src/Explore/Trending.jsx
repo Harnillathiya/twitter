@@ -1,5 +1,5 @@
-import React from 'react'
-import Foryou from './Foryou'
+import React from "react";
+import Foryou from "./Foryou";
 
 const Trending = () => {
   return (

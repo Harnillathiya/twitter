@@ -12,6 +12,8 @@ import Foryou from "./Explore/Foryou";
 import News from "./Explore/News";
 import Sports from "./Explore/Sports";
 import Entertainment from "./Explore/Entertainment";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +70,14 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/login",
+    element: <Login/>,
+  },
+  {
+    path: "/Signup",
+    element: <Signup/>
+  }
 ]);
 
 export default router;
