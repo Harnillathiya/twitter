@@ -7,7 +7,7 @@ import { CiViewBoard } from "react-icons/ci";
 import { BiRepost } from "react-icons/bi";
 import "./TweetItem.css";
 import { v4 as uuid } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToHighlight } from "../../redux/action";
 
 const style = {
@@ -25,12 +25,8 @@ const style = {
 const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
-//   const [bookMarkClick, setBookMarkClick] = useState(false);
 
   const dispatch = useDispatch();
-
-  const selector = useSelector((state) => state.tweets);
-  console.log("selector", selector);
 
   const handleOpen = () => {
     setOpen(true);
@@ -72,14 +68,12 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   };
 
   const handleBookmark = () => {
-    // setBookMarkClick(true);
     const tweetData = {
       id: tweet.id,
       likes: tweet.likes,
       timestamp: tweet.timestamp,
       tweet: tweet.tweet,
     };
-    console.log("tweetData", tweetData);
     dispatch(addToHighlight(tweetData));
   };
 
