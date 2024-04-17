@@ -140,6 +140,7 @@
 .searchbar-fix {
   background-color: whitesmoke;
   position: sticky;
+  border: 1px solid black;
 }
 .explore-setting {
   display: flex;
@@ -187,10 +188,10 @@
   text-transform: capitalize !important;
   font-size: 19px !important;
 }
-.modalopen-sidebar{
+/* .modalopen-sidebar{
   display: flex;
   align-items: center;
-}
+} */
 .premium{
   padding-left: 10px;
   line-height: 50px;

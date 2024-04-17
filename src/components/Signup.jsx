@@ -25,6 +25,8 @@ const Signup = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
+                    className='Signup_btn'
+                    
                 />
                 <input
                     type="email"
@@ -32,6 +34,7 @@ const Signup = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className='Signup_btn'
                 />
                 <input
                     type="password"
@@ -39,6 +42,7 @@ const Signup = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className='Signup_btn'
                 />
                 <button type="submit">Signup</button>
             </form>

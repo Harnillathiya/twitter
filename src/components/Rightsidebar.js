@@ -14,7 +14,7 @@ const Rightsidebar = () => {
           <input
             type="text"
             placeholder="Search"
-            className="bg-transparent outline-none px-4"
+            className="bg-transparent outline-none px-4 p-1"
           />
         </div>
 
