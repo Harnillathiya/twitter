@@ -1,6 +1,6 @@
 import React from "react";
 import Explore from "../Page/Explore";
-import { forYou, name } from "../StaticData";
+import { forYou } from "../StaticData";
 
 const News = () => {
   return (
@@ -13,7 +13,7 @@ const News = () => {
             <p>{item.nameOne}</p>
             <p className="nametwo-text">{item.nameTwo}</p>
             <p>
-              Trending With <span className="different-name">{name}</span>
+              Trending With <span className="different-name">{item.nameThree}</span>
             </p>
           </div>
           <div>

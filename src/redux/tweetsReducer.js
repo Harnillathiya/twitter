@@ -1,12 +1,10 @@
-import { combineReducers } from "redux";
-
 import { ADD_TWEET, LIKE_COMMENT, DISLIKE_COMMENT, SHOW_TWEET } from "./action";
 import { LIKE_TWEET, UNLIKE_TWEET, ADD_COMMENT } from "../redux/action";
 const initialState = {
   tweets: [],
 };
 
-const tweetsReducer = (state = initialState, action) => {
+export const tweetsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TWEET:
       return {
@@ -107,6 +105,3 @@ const tweetsReducer = (state = initialState, action) => {
   }
 };
 
-export const rootReducer = combineReducers({
-  tweets: tweetsReducer
-});
