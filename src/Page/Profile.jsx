@@ -8,6 +8,10 @@ import Button from "@mui/material/Button";
 import { SlCalender } from "react-icons/sl";
 import Posts from "../components/Profile/Posts";
 import Highlight from "../components/Profile/Highlight";
+import Replies from "../components/Profile/Replies";
+import Articles from "../components/Profile/Articles";
+import Likes from "../components/Profile/Likes";
+import Media from "../components/Profile/Media";
 
 export const profileHeader = [
   {
@@ -104,7 +108,11 @@ const Profile = () => {
             </div>
           </div>
           <div>{selectedTab === "posts" ? <Posts /> : null}</div>
+          <div>{selectedTab === "replies" ? <Replies /> : null}</div>
           <div>{selectedTab === "highlights" ? <Highlight /> : null}</div>
+          <div>{selectedTab === "articles" ? <Articles /> : null}</div>
+          <div>{selectedTab === "media" ? <Media /> : null}</div>
+          <div>{selectedTab === "likes" ? <Likes /> : null}</div>
         </div>
       </div>
     </div>

@@ -3,18 +3,18 @@ import { CiSearch } from "react-icons/ci";
 import dhoni from "../image/Indian-cricketer-Mahendra-Singh-Dhoni-2011.webp";
 import kohli from "../image/virat-kohli.png";
 import ruturaj from "../image/102.png";
-// import { Container } from "@mui/material";
+import { Container } from "@mui/material";
 
 const Rightsidebar = () => {
   return (
-    // <Container maxWidth="sm">
-      <div>
+    <div>
+      <Container maxWidth="lg">
         <div className="flex items-center p-2 bg-gray-100 rounded-full outline-none">
           <CiSearch />
           <input
             type="text"
             placeholder="Search"
-            className="bg-transparent outline-none px-4"
+            className="bg-transparent outline-none px-4 p-1"
           />
         </div>
 
@@ -117,8 +117,8 @@ const Rightsidebar = () => {
             <span className="footer-text">@2024 X Corp</span>
           </div>
         </footer>
-      </div>
-    // </Container>
+      </Container>
+    </div>
   );
 };
 

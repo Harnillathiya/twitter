@@ -54,11 +54,8 @@
   }
 }
 
-.dhoni-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-}
+/* rightsidebar */
+
 .main-flex {
   display: flex;
   justify-content: space-between;
@@ -70,10 +67,16 @@
   border-radius: 20px;
   padding: 5px 15px;
 }
+.dhoni-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
 .footer-text {
   font-size: 13px;
   margin: 4px;
 }
+
 .searchbar {
   display: grid;
   grid-template-columns: 1fr 70px;
@@ -142,6 +145,7 @@
 }
 .searchbar-fix {
   background-color: whitesmoke;
+  border: 1px solid black;
 }
 .explore-setting {
   display: flex;
@@ -187,16 +191,16 @@
 .maincheckbox {
   padding-top: 20px;
 }
-.more{
+.more {
   color: black !important;
   text-transform: capitalize !important;
   font-size: 19px !important;
 }
-.modalopen-sidebar{
+.modalopen-sidebar {
   display: flex;
   align-items: center;
 }
-.premium{
+.premium {
   padding-left: 10px;
   line-height: 50px;
   font-size: 20px;

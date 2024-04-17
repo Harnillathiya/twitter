@@ -45,7 +45,7 @@ export const showTweet = (tweet) => ({
   payload: tweet,
 });
 
-export const addToHighlight = (tweet) => ({
+export const addToHighlight = (tweetData) => ({
   type: ADD_TO_HIGHLIGHT,
-  payload: tweet,
+  payload: tweetData,
 });
