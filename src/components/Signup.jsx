@@ -26,6 +26,7 @@ const Signup = () => {
                     onChange={(e) => setName(e.target.value)}
                     required
                     className='Signup_btn'
+                    
                 />
                 <input
                     type="email"
