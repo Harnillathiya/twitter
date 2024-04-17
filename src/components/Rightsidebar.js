@@ -7,14 +7,14 @@ import { Container } from "@mui/material";
 
 const Rightsidebar = () => {
   return (
-    <div>
+    <div className="ml-2 flex justify-center">
       <Container maxWidth="lg">
-        <div className="flex items-center p-2 bg-gray-100 rounded-full outline-none">
-          <CiSearch />
+        <div className="flex items-center  bg-gray-100 rounded-full outline-none">
+          <CiSearch  className="ml-3 size-6  items-center"/>
           <input
             type="text"
             placeholder="Search"
-            className="bg-transparent outline-none px-4"
+            className="bg-transparent outline-none  border-none  items-center p-3"
           />
         </div>
 

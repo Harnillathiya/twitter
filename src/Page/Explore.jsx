@@ -48,7 +48,7 @@ const Explore = () => {
   };
 
   return (
-      <div className="searchbar-fix bg-white border-line">
+      <div className="searchbar-fix bg-white border-line border-black">
         <div className="searchbar">
           <div className="flex items-center p-3 bg-gray-100 rounded-full outline-none searchbar-color">
             <CiSearch />

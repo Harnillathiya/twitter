@@ -16,7 +16,7 @@ const Sports = () => {
               </p>
             </div>
             <div>
-              <button>···</button>
+              <p>···</p>
             </div>
           </div>
         ))}
