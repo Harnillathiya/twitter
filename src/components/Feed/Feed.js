@@ -34,7 +34,7 @@ const Feed = () => {
 
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="sm">
       <div className='border border-gray-200'>
         <CreatePost onSaveTweet={onSaveTweet} />
         <Tweet
