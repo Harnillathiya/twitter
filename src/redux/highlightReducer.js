@@ -7,10 +7,9 @@ const initialState = {
 export const highlightReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_HIGHLIGHT:
-      console.log(action.payload);
       return {
         ...state,
-        highlights: [action.payload, ...state.tweetPost],
+        highlights: [action.payload, ...state.highlights],
       };
     default:
       return state;

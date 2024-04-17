@@ -185,3 +185,20 @@
   cursor: pointer;
   font-weight: 600;
 }
+.postdata-flex{
+  display: flex;
+}
+.postdata-mainflex{
+  display: flex;
+  justify-content: space-between;
+}
+.postdata{
+  display: flex;
+  padding-left: 10px;
+}
+.postdp-icon{
+  border-radius: 50%;
+}
+.postdata-content{
+  padding-left: 10px;
+}
