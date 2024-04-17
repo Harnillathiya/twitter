@@ -3,11 +3,7 @@ import Foryou from './Foryou'
 
 const Trending = () => {
   return (
-    <>
-      <div>
         <Foryou />
-      </div>
-    </>
   )
 }
 

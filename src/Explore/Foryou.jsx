@@ -4,7 +4,6 @@ import Explore from "../Page/Explore";
 
 const Foryou = () => {
   return (
-    <div>
       <div>
         <Explore />
         <div className="foryou-borderbox">
@@ -24,7 +23,6 @@ const Foryou = () => {
           ))}
         </div>
       </div>
-    </div>
   );
 };
 

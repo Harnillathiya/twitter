@@ -4,7 +4,6 @@ import { forYou, name } from "../StaticData";
 
 const Sports = () => {
   return (
-    <div>
       <div>
         <Explore />
         {forYou.map((item, index) => (
@@ -22,7 +21,6 @@ const Sports = () => {
           </div>
         ))}
       </div>
-    </div>
   );
 };
 
