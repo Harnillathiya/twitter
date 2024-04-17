@@ -18,7 +18,7 @@ const Foryou = () => {
                 </p>
               </div>
               <div>
-                <button>···</button>
+                <p>···</p>
               </div>
             </div>
           ))}
