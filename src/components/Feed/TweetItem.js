@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { SlLike, SlDislike } from "react-icons/sl";
 import { FaRegComment } from "react-icons/fa";
 import { Modal, Button, Box, Typography } from "@mui/material";
-import { CiBookmarkCheck } from "react-icons/ci";
 import { CiViewBoard } from "react-icons/ci";
 import { BiRepost } from "react-icons/bi";
 import "./TweetItem.css";
 import { v4 as uuid } from "uuid";
 import { useDispatch } from "react-redux";
 import { addToHighlight } from "../../redux/action";
+import { FaBookmark } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
 
 const style = {
   position: "absolute",
@@ -25,6 +26,7 @@ const style = {
 const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [bookMarkClick, setBookMarkClick] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -36,7 +38,6 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   const handleClose = () => setOpen(false);
 
   const handleLike = () => {
-    console.log(likeTweet);
     if (tweet && tweet.id) {
       likeTweet(tweet.id);
     }
@@ -67,7 +68,7 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     setComment(e.target.value);
   };
 
-  const handleBookmark = () => {
+  const handleBookmarkSave = () => {
     const tweetData = {
       id: tweet.id,
       likes: tweet.likes,
@@ -75,6 +76,11 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
       tweet: tweet.tweet,
     };
     dispatch(addToHighlight(tweetData));
+    setBookMarkClick(true);
+  };
+
+  const handleBookMarkUnSave = () => {
+    setBookMarkClick(false);
   };
 
   return (
@@ -138,10 +144,15 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
           </Box>
         </Modal>
         <div className="flex items-center">
-          <Button onClick={handleBookmark}>
-            <CiBookmarkCheck size={"24px"} />
-          </Button>
-          <p>0</p>
+          {!bookMarkClick ? (
+            <Button onClick={handleBookmarkSave}>
+              <FaRegBookmark size={24} />
+            </Button>
+          ) : (
+            <Button onClick={handleBookMarkUnSave}>
+              <FaBookmark size={24} />
+            </Button>
+          )}
         </div>
         <div className="flex items-center">
           <Button>

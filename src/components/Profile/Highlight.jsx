@@ -1,5 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { SlLike, SlDislike } from "react-icons/sl";
+import { Button } from "@mui/material";
+import { likeTweet, unlikeTweet } from "../../redux/action";
 
 const Highlight = () => {
   const highlightSelector = useSelector((state) => state.highlights);
@@ -21,6 +24,20 @@ const Highlight = () => {
     }
   };
 
+  const handleLike = (likes) => {
+    console.log("likes", likes);
+    if (likes && likes.id) {
+      likeTweet(likes.id);
+    }
+  };
+  
+  const handleUnlike = (likes) => {
+    console.log("likes", likes);
+    if (likes && likes.id) {
+      unlikeTweet(likes.id);
+    }
+  };
+
   return (
     <div>
       {highlightSelector?.highlights?.map((item, index) => {
@@ -31,6 +48,15 @@ const Highlight = () => {
               {getTimeAgo(highlightSelector?.highlights[0]?.timestamp)}
             </p>
             <p>{item?.tweet}</p>
+            <div style={{ display: "flex" }}>
+              <Button onClick={() => handleLike(item.likes)}>
+                <SlLike size={"24px"} />
+              </Button>
+              <p>{item?.likes}</p>
+              <Button onClick={() => handleUnlike(item.likes)}>
+                <SlDislike size={"24px"} />
+              </Button>
+            </div>
           </div>
         );
       })}

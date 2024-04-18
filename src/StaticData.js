@@ -118,3 +118,56 @@ export const postData = [
     content: "What was the fastest way you lost weight?",
   },
 ];
+
+export const trending = [
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+  {
+    numberOneTrending: "1·Travel · Trending",
+    numberTwoTrending: "#WorldHeritageDay",
+    numberThreeTrending: "23.1K posts",
+  },
+];
