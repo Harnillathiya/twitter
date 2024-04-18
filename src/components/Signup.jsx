@@ -1,46 +1,68 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import loginmark from "../image/loginmark.jpeg";
-import './Signup.css'; 
+import './Signup.css';
+import { BASE_URL } from "../config";
+
 
 const Signup = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const [credentials, setCredentials] = useState({
+        username: undefined,
+        email: undefined,
+        password: undefined,
+    });
+
+    const handleChange = (e) => {
+        setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle signup logic here
+        try {
+            
+            const res = await fetch(`${BASE_URL}/register`, {
+                method: "post",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(credentials),
+            });
+            const result = await res.json();
+            if (!res.ok) alert(result.message);
+            console.log("ggggggggggggggggggggggggggggggggggggggg");
+            Navigate("/login");
+
+        } catch (err) {
+            alert(err.message);
+        }
     };
 
     return (
         <div className="signup-container">
             <div className="header">
-            <img className="login-image2 w-5" src={loginmark} alt="loginmark" />
+                <img className="login-image2 w-5" src={loginmark} alt="loginmark" />
             </div>
             <form onSubmit={handleSubmit} className="signup-form">
                 <input
                     type="text"
                     placeholder="Full Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={handleChange}
                     required
                     className='Signup_btn'
-                    
+
                 />
                 <input
                     type="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleChange}
                     required
                     className='Signup_btn'
                 />
                 <input
                     type="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleChange}
                     required
                     className='Signup_btn'
                 />
