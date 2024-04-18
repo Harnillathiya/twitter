@@ -49,7 +49,7 @@ const Tweet = ({
             </div>
           </div>
         </div>
-        <div className="ml-12 mt-4  tweet-area">
+        <div className="mt-4  tweet-area">
           <div>
             {tweets.map((tweet, index) => (
               <div key={index}>
