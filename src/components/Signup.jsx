@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 import loginmark from "../image/loginmark.jpeg";
 import './Signup.css';
 import { BASE_URL } from "../config";
 
-
 const Signup = () => {
+    const navigate = useNavigate(); 
 
     const [credentials, setCredentials] = useState({
         username: undefined,
@@ -19,8 +19,7 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            
+        try {   
             const res = await fetch(`${BASE_URL}/register`, {
                 method: "post",
                 headers: {
@@ -31,7 +30,7 @@ const Signup = () => {
             const result = await res.json();
             if (!res.ok) alert(result.message);
             console.log("ggggggggggggggggggggggggggggggggggggggg");
-            Navigate("/login");
+            navigate("/login"); 
 
         } catch (err) {
             alert(err.message);
@@ -50,7 +49,6 @@ const Signup = () => {
                     onChange={handleChange}
                     required
                     className='Signup_btn'
-
                 />
                 <input
                     type="email"
