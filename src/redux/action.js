@@ -11,9 +11,7 @@ export const SHOW_TWEET = "SAVE_TWEET";
 
 export const ADD_TO_HIGHLIGHT = "ADD_TO_HIGHLIGHT";
 
-export const ISHIGHLIGHTED = "ISHIGHLIGHTED";
-
-export const TOGGLE_BOOKMARK = "TOGGLE_BOOKMARK";
+export const DELETE_TO_HIGHLIGHT = "DELETE_TO_HIGHLIGHT";
 
 export const addTweet = (tweet) => ({
   type: ADD_TWEET,
@@ -49,11 +47,7 @@ export const addToHighlight = (payload) => ({
   payload: payload,
 });
 
-export const isHighlighted = (tweets) => ({
-  type: ISHIGHLIGHTED,
-  payload: tweets,
-});
-
-export const toggleBookmark = () => ({
-  type: TOGGLE_BOOKMARK,
+export const deleteToHighlight = (payload) => ({
+  type: DELETE_TO_HIGHLIGHT,
+  payload: payload,
 });

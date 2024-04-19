@@ -25,6 +25,7 @@ const Notifications = () => {
     setSelectedTab(id);
     console.log("id", id);
   };
+
   return (
     <div>
       <div className="notification-flex">

@@ -7,22 +7,22 @@ const Trending = () => {
     <div>
       <Explore />
       <div className="foryou-borderbox">
-      <p>India trends</p>
+        <p>India trends</p>
 
-      {trending.map((item, index) => {
-        return (
-          <div className="foryou-mapdata">
-            <div key={index}>
-              <p>{item.numberOneTrending}</p>
-              <p>{item.numberTwoTrending}</p>
-              <p>{item.numberThreeTrending}</p>
+        {trending.map((item, index) => {
+          return (
+            <div className="foryou-mapdata">
+              <div key={index}>
+                <p>{item.numberOneTrending}</p>
+                <p>{item.numberTwoTrending}</p>
+                <p>{item.numberThreeTrending}</p>
+              </div>
+              <div>
+                <p>...</p>
+              </div>
             </div>
-            <div>
-              <p>...</p>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
     </div>
   );

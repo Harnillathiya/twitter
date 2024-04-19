@@ -1,41 +1,40 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'; 
 import loginmark from "../image/loginmark.jpeg";
-import './Signup.css';
+import "./Signup.css";
 import { BASE_URL } from "../config";
 
 const Signup = () => {
+  const [credentials, setCredentials] = useState({
+    username: undefined,
+    email: undefined,
+    password: undefined,
+  });
     const navigate = useNavigate(); 
 
-    const [credentials, setCredentials] = useState({
-        username: undefined,
-        email: undefined,
-        password: undefined,
-    });
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
 
-    const handleChange = (e) => {
-        setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`${BASE_URL}/register`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+      const result = await res.json();
+      if (!res.ok) alert(result.message);
+      navigate("/login");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {   
-            const res = await fetch(`${BASE_URL}/register`, {
-                method: "post",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(credentials),
-            });
-            const result = await res.json();
-            if (!res.ok) alert(result.message);
-            console.log("ggggggggggggggggggggggggggggggggggggggg");
-            navigate("/login"); 
-
-        } catch (err) {
-            alert(err.message);
-        }
-    };
 
     return (
         <div className="signup-container">

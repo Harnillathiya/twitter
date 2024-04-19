@@ -1,7 +1,6 @@
 import React from "react";
 import { postData } from "../../StaticData";
 
-
 const Posts = () => {
   return (
     <div>

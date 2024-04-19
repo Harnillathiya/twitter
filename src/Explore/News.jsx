@@ -4,7 +4,6 @@ import { forYou } from "../StaticData";
 
 const News = () => {
   return (
-
     <div>
       <Explore />
       {forYou.map((item, index) => (
@@ -13,7 +12,8 @@ const News = () => {
             <p>{item.nameOne}</p>
             <p className="nametwo-text">{item.nameTwo}</p>
             <p>
-              Trending With <span className="different-name">{item.nameThree}</span>
+              Trending With{" "}
+              <span className="different-name">{item.nameThree}</span>
             </p>
           </div>
           <div>

@@ -7,7 +7,7 @@ import { BiRepost } from "react-icons/bi";
 import "./TweetItem.css";
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { addToHighlight } from "../../redux/action";
+import { addToHighlight, deleteToHighlight } from "../../redux/action";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 
@@ -38,7 +38,7 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
 
   const handleClose = () => setOpen(false);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (tweet && tweet.id) {
       likeTweet(tweet.id);
     }
@@ -77,7 +77,10 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   };
 
   const handleBookMarkUnSave = (tweetId) => {
-    
+    const tweetData = {
+      tweetId,
+    };
+    dispatch(deleteToHighlight(tweetData));
   };
 
   return (
@@ -146,7 +149,7 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
               <FaRegBookmark size={24} />
             </Button>
           ) : (
-            <Button onClick={handleBookMarkUnSave(tweet.id)}>
+            <Button onClick={() => handleBookMarkUnSave(tweet.id)}>
               <FaBookmark size={24} />
             </Button>
           )}

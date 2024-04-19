@@ -27,9 +27,11 @@ const Feed = () => {
   const onTweetUnLike = (id) => {
     dispatch(unlikeTweet(id));
   };
+
   const onAddComment = (tweetId, comment) => {
     dispatch(addComment(tweetId, comment));
   };
+
   const onLikeComment = (tweetId, commentId) => {
     dispatch(likeComment(tweetId, commentId));
   };
