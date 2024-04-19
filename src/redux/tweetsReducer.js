@@ -1,8 +1,13 @@
-import { ADD_TWEET, LIKE_COMMENT, DISLIKE_COMMENT, SHOW_TWEET, ISHIGHLIGHTED } from "./action";
+import {
+  ADD_TWEET,
+  LIKE_COMMENT,
+  DISLIKE_COMMENT,
+  SHOW_TWEET,
+  ADD_TO_HIGHLIGHT,
+} from "./action";
 import { LIKE_TWEET, UNLIKE_TWEET, ADD_COMMENT } from "../redux/action";
 const initialState = {
   tweets: [],
-  isHighlight:true
 };
 
 export const tweetsReducer = (state = initialState, action) => {
@@ -91,9 +96,6 @@ export const tweetsReducer = (state = initialState, action) => {
       };
       return Data;
 
-    default:
-      return state;
-
     case SHOW_TWEET:
       if (tweetId === action.payload.tweetId) {
         return {
@@ -103,10 +105,22 @@ export const tweetsReducer = (state = initialState, action) => {
       }
       return state;
 
-      case ISHIGHLIGHTED:
-        return{
-          ...state,
-          tweets:[action.payload,...state.tweets]
-        }
+    case ADD_TO_HIGHLIGHT:
+      return {
+        ...state,
+        tweets: state.tweets.map(item => {
+          if(item.id === action.payload.tweetId) {
+            return {
+              ...item,
+              isHighlight: true
+            }
+          } else {
+            return item
+          }
+        }),
+      };
+
+      default:
+        return state;
   }
 };

@@ -5,8 +5,9 @@ import { Button } from "@mui/material";
 import { likeTweet, unlikeTweet } from "../../redux/action";
 
 const Highlight = () => {
-  const highlightSelector = useSelector((state) => state.highlights);
-  console.log("highlights", highlightSelector);
+  const tweets = useSelector((state) => state.tweets.tweets);
+  console.log(tweets)
+  const highLightsTweets = tweets?.filter(d => d.isHighlight === true) || []
 
   const getTimeAgo = (timestamp) => {
     const timeDifference = Date.now() - timestamp;
@@ -40,12 +41,12 @@ const Highlight = () => {
 
   return (
     <div>
-      {highlightSelector?.highlights?.map((item, index) => {
+      {highLightsTweets?.map((item, index) => {
         return (
           <div key={index}>
             <p>
               Harsh Dash{" "}
-              {getTimeAgo(highlightSelector?.highlights[0]?.timestamp)}
+              {getTimeAgo(item?.timestamp)}
             </p>
             <p>{item?.tweet}</p>
             <div style={{ display: "flex" }}>
