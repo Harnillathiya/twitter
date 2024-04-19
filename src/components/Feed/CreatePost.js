@@ -8,12 +8,17 @@ import { GrSchedulePlay } from "react-icons/gr";
 import Avatar from "react-avatar";
 import "./Feed.css";
 import { v4 as uuid } from "uuid";
+import { BASE_URL } from "../../config";
 
 const CreatePost = (props) => {
+
+
   const [tweet, setTweet] = useState("");
   const [error, setError] = useState(null);
+ 
 
-  const saveTweet = () => {
+  //reduxdata strore
+  const  saveTweet = async () => {
     if (tweet.trim() === "") {
       setError("Tweet cannot be empty.");
       return;
@@ -28,8 +33,25 @@ const CreatePost = (props) => {
     setTweet("");
     setError(null);
     props.onSaveTweet(tweetPayload);
-  };
 
+    try {
+      const res = await fetch(`${BASE_URL}/Tweet`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(tweetPayload),
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.message);
+
+    } catch (error) {
+
+      alert(error.message);
+    }
+    
+  };
   return (
     <div className="w-[100%]">
       <div className="mt-2">
@@ -59,6 +81,8 @@ const CreatePost = (props) => {
               onChange={(e) => {
                 setTweet(e.target.value);
                 setError(null);
+                // handleChange()
+                
               }}
               style={{
                 borderRadius: "10px",
@@ -89,10 +113,12 @@ const CreatePost = (props) => {
               </a>
             </div>
             <button
-              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${
-                tweet.trim() === "" && "opacity-50 cursor-not-allowed"
-              }`} // Apply opacity and cursor-not-allowed classes when tweet is empty
-              onClick={saveTweet}
+              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === "" && "opacity-50 cursor-not-allowed"
+                }`} // Apply opacity and cursor-not-allowed classes when tweet is empty
+              // onClick={saveTweet}
+              onClick={() => {
+                saveTweet();
+              }}
               disabled={tweet.trim() === ""}
             >
               Post
