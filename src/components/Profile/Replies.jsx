@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Replies = () => {
-  return (
-    <div>
-      Replies Page
-    </div>
-  )
-}
+  return <div>Replies Page</div>;
+};
 
-export default Replies
+export default Replies;

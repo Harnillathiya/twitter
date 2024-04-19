@@ -6,8 +6,7 @@ import { likeTweet, unlikeTweet } from "../../redux/action";
 
 const Highlight = () => {
   const tweets = useSelector((state) => state.tweets.tweets);
-  console.log(tweets)
-  const highLightsTweets = tweets?.filter(d => d.isHighlight === true) || []
+  const highLightsTweets = tweets?.filter((d) => d.isHighlight === true) || [];
 
   const getTimeAgo = (timestamp) => {
     const timeDifference = Date.now() - timestamp;
@@ -31,7 +30,7 @@ const Highlight = () => {
       likeTweet(likes.id);
     }
   };
-  
+
   const handleUnlike = (likes) => {
     console.log("likes", likes);
     if (likes && likes.id) {
@@ -44,10 +43,7 @@ const Highlight = () => {
       {highLightsTweets?.map((item, index) => {
         return (
           <div key={index}>
-            <p>
-              Harsh Dash{" "}
-              {getTimeAgo(item?.timestamp)}
-            </p>
+            <p>Harsh Dash {getTimeAgo(item?.timestamp)}</p>
             <p>{item?.tweet}</p>
             <div style={{ display: "flex" }}>
               <Button onClick={() => handleLike(item.likes)}>

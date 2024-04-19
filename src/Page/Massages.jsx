@@ -32,4 +32,4 @@ const Massages = () => {
   );
 };
 
-export default Massages
+export default Massages;

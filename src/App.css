@@ -1,6 +1,5 @@
 .main {
   margin-top: 35px;
-  /* width: 20%; */
 
   .leftmainbar {
     margin: 0 0 20px 0;
@@ -54,8 +53,6 @@
   }
 }
 
-/* rightsidebar */
-
 .main-flex {
   display: flex;
   justify-content: space-between;
@@ -76,7 +73,6 @@
   font-size: 13px;
   margin: 4px;
 }
-
 .searchbar {
   display: grid;
   grid-template-columns: 1fr 70px;
@@ -108,7 +104,6 @@
   position: absolute;
   background-color: rgb(65, 47, 47);
   height: 5%;
-  /* width: 100%; */
   display: none;
 }
 .border-line ul li:hover::before {
@@ -171,7 +166,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .rightarrow-flex {
   display: flex;
   align-items: center;
@@ -190,13 +184,13 @@
   text-transform: capitalize !important;
   font-size: 19px !important;
 }
-/* .modalopen-sidebar{
-  display: flex;
-  align-items: center;
-} */
-.premium{
+.premium {
   padding-left: 10px;
   line-height: 50px;
   font-size: 20px;
   font-weight: 600;
+}
+.modalopen-sidebar{
+  display: flex;
+  align-items: center;
 }

@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Media = () => {
-  return (
-    <div>
-      Media Page
-    </div>
-  )
-}
+  return <div>Media Page</div>;
+};
 
-export default Media
+export default Media;
