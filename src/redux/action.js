@@ -11,7 +11,9 @@ export const SHOW_TWEET = "SAVE_TWEET";
 
 export const ADD_TO_HIGHLIGHT = "ADD_TO_HIGHLIGHT";
 
-export const ISHIGHLIGHTED="ISHIGHLIGHTED"
+export const ISHIGHLIGHTED = "ISHIGHLIGHTED";
+
+export const TOGGLE_BOOKMARK = "TOGGLE_BOOKMARK";
 
 export const addTweet = (tweet) => ({
   type: ADD_TWEET,
@@ -42,12 +44,16 @@ export const unlikeTweet = (index) => ({
   payload: index,
 });
 
-export const addToHighlight = (tweetData) => ({
+export const addToHighlight = (payload) => ({
   type: ADD_TO_HIGHLIGHT,
-  payload: tweetData,
+  payload: payload,
 });
 
-export const isHighlighted=(tweets)=>({
-  type:ISHIGHLIGHTED,
-  payload:tweets,
+export const isHighlighted = (tweets) => ({
+  type: ISHIGHLIGHTED,
+  payload: tweets,
+});
+
+export const toggleBookmark = () => ({
+  type: TOGGLE_BOOKMARK,
 });

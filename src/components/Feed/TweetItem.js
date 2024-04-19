@@ -6,7 +6,7 @@ import { CiViewBoard } from "react-icons/ci";
 import { BiRepost } from "react-icons/bi";
 import "./TweetItem.css";
 import { v4 as uuid } from "uuid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToHighlight } from "../../redux/action";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
@@ -26,7 +26,8 @@ const style = {
 const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
-  const [bookMarkClick, setBookMarkClick] = useState(false);
+  const tweets = useSelector((state) => state.tweets.tweets);
+  console.log("tweets", tweets);
 
   const dispatch = useDispatch();
 
@@ -68,19 +69,15 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
     setComment(e.target.value);
   };
 
-  const handleBookmarkSave = () => {
+  const handleBookmarkSave = (tweetId) => {
     const tweetData = {
-      id: tweet.id,
-      likes: tweet.likes,
-      timestamp: tweet.timestamp,
-      tweet: tweet.tweet,
+      tweetId,
     };
     dispatch(addToHighlight(tweetData));
-    setBookMarkClick(true);
   };
 
-  const handleBookMarkUnSave = () => {
-    setBookMarkClick(false);
+  const handleBookMarkUnSave = (tweetId) => {
+    
   };
 
   return (
@@ -144,12 +141,12 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
           </Box>
         </Modal>
         <div className="flex items-center">
-          {!bookMarkClick ? (
-            <Button onClick={handleBookmarkSave}>
+          {!tweet.isHighlight ? (
+            <Button onClick={() => handleBookmarkSave(tweet.id)}>
               <FaRegBookmark size={24} />
             </Button>
           ) : (
-            <Button onClick={handleBookMarkUnSave}>
+            <Button onClick={handleBookMarkUnSave(tweet.id)}>
               <FaBookmark size={24} />
             </Button>
           )}
