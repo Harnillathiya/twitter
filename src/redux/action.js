@@ -1,3 +1,4 @@
+
 export const ADD_TWEET = "ADD_TWEET";
 export const ADD_COMMENT = "ADD_COMMENT";
 
@@ -10,8 +11,11 @@ export const DISLIKE_COMMENT = "DISLIKE_COMMENT";
 export const SHOW_TWEET = "SAVE_TWEET";
 
 export const ADD_TO_HIGHLIGHT = "ADD_TO_HIGHLIGHT";
-
 export const DELETE_TO_HIGHLIGHT = "DELETE_TO_HIGHLIGHT";
+
+export const TWEET_FETCH_START = "TWEET_FETCH_START";
+export const TWEET_FETCH_SUCCESS = "TWEET_FETCH_SUCCESS";
+export const TWEET_FETCH_FAILED = "TWEET_FETCH_FAILED";
 
 export const addTweet = (tweet) => ({
   type: ADD_TWEET,
@@ -51,3 +55,18 @@ export const deleteToHighlight = (payload) => ({
   type: DELETE_TO_HIGHLIGHT,
   payload: payload,
 });
+
+ export const tweetFetchStart = (data) =>({
+  type: TWEET_FETCH_START,
+  payload: data,
+ });
+
+ export const tweetFetchSuccess = (data) =>({
+  type: TWEET_FETCH_SUCCESS,
+  payload: data,
+ });
+
+ export const tweetFetchFailed = (data) =>({
+  type: TWEET_FETCH_FAILED,
+  payload: data,
+ });

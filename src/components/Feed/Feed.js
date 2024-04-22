@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CreatePost from "./CreatePost";
 import Tweet from "./Tweet";
 import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
+import { tweetFetchStart, TWEET_FETCH_SUCCESS, TWEET_FETCH_FAILED } from "../../redux/action";
 import {
   addTweet,
   likeTweet,
@@ -14,7 +15,8 @@ import {
 
 const Feed = () => {
   const dispatch = useDispatch();
-  const tweets = useSelector((state) => state.tweets);
+  const tweets = useSelector((state) => state.tweets.tweets) || [];
+  console.log("------", tweets)
 
   const onSaveTweet = (payload) => {
     dispatch(addTweet(payload));
@@ -40,12 +42,29 @@ const Feed = () => {
     dispatch(dislikeComment(tweetId, commentId));
   };
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+       const response = await fetch('http://localhost:8000/api/showTweet');
+       const data = await response.json();
+       console.log(".................", data);
+
+      dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
+      } catch (err) {
+        console.error(err)
+        dispatch({ type: TWEET_FETCH_FAILED, payload: err.message });
+      }
+    }
+    dispatch(tweetFetchStart())
+    fetchData()
+  },[dispatch])
+
   return (
     <Container maxWidth="sm">
       <div className="border border-gray-200">
         <CreatePost onSaveTweet={onSaveTweet} />
         <Tweet
-          tweets={tweets.tweets}
+          tweets={tweets}
           onTweetLike={onTweetLike}
           onTweetUnLike={onTweetUnLike}
           onAddComment={onAddComment}

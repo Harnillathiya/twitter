@@ -3,6 +3,8 @@ import Avatar from "react-avatar";
 import TweetItem from "./TweetItem";
 import ShowComments from "./ShowComments";
 
+
+
 const Tweet = ({
   tweets,
   onTweetLike,
@@ -26,7 +28,6 @@ const Tweet = ({
       return `${Math.floor(seconds / 86400)} days ago`;
     }
   };
-
   return (
     <div className="p-4">
       <div>
