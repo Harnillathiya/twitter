@@ -25,14 +25,17 @@ const Likes = () => {
         return (
           <div key={index}>
             {item.likes > 0 ? (
-              <div style={{ display: "flex" }}>
-                <Button onClick={() => handleLike(item.likes)}>
-                  <SlLike size={"24px"} />
-                </Button>
-                <p>{item?.likes}</p>
-                <Button onClick={() => handleUnlike(item.likes)}>
-                  <SlDislike size={"24px"} />
-                </Button>
+              <div>
+                <p>{item.tweet}</p>
+                <div style={{ display: "flex" }}>
+                  <Button onClick={() => handleLike(item.likes)}>
+                    <SlLike size={"24px"} />
+                  </Button>
+                  <p>{item?.likes}</p>
+                  <Button onClick={() => handleUnlike(item.likes)}>
+                    <SlDislike size={"24px"} />
+                  </Button>
+                </div>
               </div>
             ) : null}
           </div>
