@@ -23,11 +23,11 @@ const style = {
   p: 4,
 };
 
-const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
+const TweetItem = ({ tweet, unlikeTweet, setCommentText }) => {
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
   const tweets = useSelector((state) => state.tweets.tweets);
-  console.log("tweets", tweets);
+  // console.log("tweets", tweets);
 
   const dispatch = useDispatch();
 
@@ -39,9 +39,13 @@ const TweetItem = ({ tweet, likeTweet, unlikeTweet, setCommentText }) => {
   const handleClose = () => setOpen(false);
 
   const handleLike = async () => {
-    if (tweet && tweet.id) {
-      likeTweet(tweet.id);
-    }
+    if (tweets && tweet.id) {
+      tweets.map((tweets) =>
+          tweets === tweet.id
+            ? { ...tweets, likes: tweets.likes + 1 }
+            : tweets
+        )}
+        console.log(tweets,'hhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
   };
 
   const handleUnlike = () => {

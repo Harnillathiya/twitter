@@ -5,11 +5,16 @@ import {
   SHOW_TWEET,
   ADD_TO_HIGHLIGHT,
   DELETE_TO_HIGHLIGHT,
+  TWEET_FETCH_START,
+  TWEET_FETCH_SUCCESS,
+  TWEET_FETCH_FAILED,
 } from "./action";
 import { LIKE_TWEET, UNLIKE_TWEET, ADD_COMMENT } from "../redux/action";
 
 const initialState = {
+  loading: false,
   tweets: [],
+  error: null,
 };
 
 export const tweetsReducer = (state = initialState, action) => {
@@ -46,10 +51,10 @@ export const tweetsReducer = (state = initialState, action) => {
       const updatedTweets = state.tweets.map((tweet) =>
         tweet.id === tweetId
           ? {
-              ...tweet,
-              comments: [comment, ...(tweet.comments || [])],
-              commentsCount: (tweet.commentsCount || 0) + 1,
-            }
+            ...tweet,
+            comments: [comment, ...(tweet.comments || [])],
+            commentsCount: (tweet.commentsCount || 0) + 1,
+          }
           : tweet
       );
       return {
@@ -138,6 +143,27 @@ export const tweetsReducer = (state = initialState, action) => {
         }),
       };
 
+
+      case TWEET_FETCH_START:
+        return {
+          ...state,
+          loading: true,
+          error: null,
+        };
+
+      case TWEET_FETCH_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          tweets: [...action.payload],
+        };
+
+      case TWEET_FETCH_FAILED:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
     default:
       return state;
   }
