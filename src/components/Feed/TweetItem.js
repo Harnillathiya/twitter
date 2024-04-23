@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { SlLike, SlDislike } from "react-icons/sl";
 import { FaRegComment } from "react-icons/fa";
@@ -5,11 +6,11 @@ import { Modal, Button, Box, Typography } from "@mui/material";
 import { CiViewBoard } from "react-icons/ci";
 import { BiRepost } from "react-icons/bi";
 import "./TweetItem.css";
-import { v4 as uuid } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToHighlight, deleteToHighlight } from "../../redux/action";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
+import { BASE_URL } from "../../config";
 
 const style = {
   position: "absolute",
@@ -23,11 +24,9 @@ const style = {
   p: 4,
 };
 
-const TweetItem = ({ tweet, unlikeTweet, setCommentText }) => {
+const TweetItem = ({ tweet, unlikeTweet, likeTweet }) => {
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
-  const tweets = useSelector((state) => state.tweets.tweets);
-  // console.log("tweets", tweets);
 
   const dispatch = useDispatch();
 
@@ -39,39 +38,76 @@ const TweetItem = ({ tweet, unlikeTweet, setCommentText }) => {
   const handleClose = () => setOpen(false);
 
   const handleLike = async () => {
-    if (tweets && tweet.id) {
-      tweets.map((tweets) =>
-          tweets === tweet.id
-            ? { ...tweets, likes: tweets.likes + 1 }
-            : tweets
-        )}
-        console.log(tweets,'hhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
-  };
-
-  const handleUnlike = () => {
-    if (tweet && tweet.id) {
-      unlikeTweet(tweet.id);
-    }
-  };
-
-  const handleComment = () => {
-    if (comment.trim() === "") {
-      alert("Comment Box is empty!");
-      return;
-    }
-    if (tweet && tweet.id) {
-      setCommentText(tweet.id, {
-        id: uuid(),
-        text: comment,
-        likes: 0,
+    try {
+      const res = await fetch(`${BASE_URL}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tweetId: tweet._id }),
       });
-      handleClose();
+
+      if (!res.ok) {
+        throw new Error('Failed to like tweet');
+      }
+      dispatch(likeTweet(tweet._id));
+
+    } catch (error) {
+      console.error('Failed to like tweet:', error);
+    }
+  }
+  const handleUnlike = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/unlike`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tweetId: tweet._id }),
+      });
+      if (!res.ok) {
+        throw new Error('Failed to unlike tweet');
+      }
+      dispatch(unlikeTweet(tweet._id));
+    } catch (error) {
+      console.error('Failed to unlike tweet:', error);
     }
   };
+
+
 
   const changeComment = (e) => {
     setComment(e.target.value);
   };
+
+  const handleComment = async () => {
+    if (comment.trim() === "") {
+      alert("Comment Box is empty!");
+      return;
+    }
+    try {
+      const res = await fetch(`${BASE_URL}/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tweetId: tweet._id, text: comment }),
+      });
+      console.log(tweet._id);
+      if (!res.ok) {
+        const errorMessage = await res.text();
+        throw new Error(`Failed to submit comment: ${errorMessage}`);
+      }
+      const updatedTweet = await res.json();
+      setComment(updatedTweet.comments);
+      console.log(updatedTweet);
+      handleClose();
+    } catch (error) {
+      console.error(error.message);
+      alert(error.message);
+    }
+  };
+  
 
   const handleBookmarkSave = (tweetId) => {
     const tweetData = {
@@ -94,7 +130,7 @@ const TweetItem = ({ tweet, unlikeTweet, setCommentText }) => {
           <Button onClick={handleLike}>
             <SlLike size={"24px"} />
           </Button>
-          <div>{tweet?.likes}</div>
+          <div>{tweet.likes}</div>
           <Button onClick={handleUnlike}>
             <SlDislike size={"24px"} />
           </Button>
