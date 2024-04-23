@@ -29,7 +29,7 @@ export const tweetsReducer = (state = initialState, action) => {
       return {
         ...state,
         tweets: state.tweets.map((tweet) =>
-          tweet.id === action.payload
+          tweet._id === action.payload
             ? { ...tweet, likes: tweet.likes + 1 }
             : tweet
         ),
@@ -39,7 +39,7 @@ export const tweetsReducer = (state = initialState, action) => {
       return {
         ...state,
         tweets: state.tweets.map((tweet) =>
-          tweet.id === action.payload && tweet.likes > 0
+          tweet._id === action.payload && tweet.likes > 0
             ? { ...tweet, likes: tweet.likes - 1 }
             : tweet
         ),

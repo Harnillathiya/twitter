@@ -16,18 +16,18 @@ import {
 const Feed = () => {
   const dispatch = useDispatch();
   const tweets = useSelector((state) => state.tweets.tweets) || [];
-  console.log("------", tweets)
+  
 
   const onSaveTweet = (payload) => {
     dispatch(addTweet(payload));
   };
 
-  const onTweetLike = (id) => {
-    dispatch(likeTweet(id));
+  const onTweetLike = (_id) => {
+    dispatch(likeTweet(_id));
   };
 
-  const onTweetUnLike = (id) => {
-    dispatch(unlikeTweet(id));
+  const onTweetUnLike = (_id) => {
+    dispatch(unlikeTweet(_id));
   };
 
   const onAddComment = (tweetId, comment) => {
@@ -47,7 +47,7 @@ const Feed = () => {
       try {
        const response = await fetch('http://localhost:8000/api/showTweet');
        const data = await response.json();
-       console.log(".................", data);
+       
 
       dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
       } catch (err) {

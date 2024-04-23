@@ -7,7 +7,6 @@ import { FaLocationDot } from "react-icons/fa6";
 import { GrSchedulePlay } from "react-icons/gr";
 import Avatar from "react-avatar";
 import "./Feed.css";
-import { v4 as uuid } from "uuid";
 import { BASE_URL } from "../../config";
 
 const CreatePost = (props) => {
@@ -24,7 +23,6 @@ const CreatePost = (props) => {
       return;
     }
     const tweetPayload = {
-      id: uuid(),
       tweet: tweet,
       timestamp: new Date().getTime(),
       likes: 0,
@@ -44,10 +42,11 @@ const CreatePost = (props) => {
       });
 
       const result = await res.json();
+      console.log(result)
       if (!res.ok) throw new Error(result.message);
 
     } catch (error) {
-
+      console.error(error)
       alert(error.message);
     }
     
