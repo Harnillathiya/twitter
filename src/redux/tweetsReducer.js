@@ -8,12 +8,16 @@ import {
   TWEET_FETCH_START,
   TWEET_FETCH_SUCCESS,
   TWEET_FETCH_FAILED,
+  FETCH_COMMENTS_SUCCESS,
+  FETCH_COMMENTS_FAILED,
+  FETCH_COMMENTS_START,
 } from "./action";
 import { LIKE_TWEET, UNLIKE_TWEET, ADD_COMMENT } from "../redux/action";
 
 const initialState = {
   loading: false,
   tweets: [],
+  comments: [],     
   error: null,
 };
 
@@ -47,9 +51,8 @@ export const tweetsReducer = (state = initialState, action) => {
 
     case ADD_COMMENT:
       const { tweetId, comment } = action.payload;
-      console.log(tweetId);
       const updatedTweets = state.tweets.map((tweet) =>
-        tweet.id === tweetId
+        tweet._id === tweetId
           ? {
             ...tweet,
             comments: [comment, ...(tweet.comments || [])],
@@ -63,16 +66,14 @@ export const tweetsReducer = (state = initialState, action) => {
       };
 
     case LIKE_COMMENT:
-      console.log("comment Id", action.payload.commentId);
-      console.log("tweetId", action.payload.tweetId);
       const data = {
         ...state,
         tweets: state.tweets.map((tweet) => {
-          if (tweet.id === action.payload.tweetId) {
+          if (tweet._id === action.payload.tweetId) {
             return {
               ...tweet,
               comments: tweet.comments.map((comment) =>
-                comment.id === action.payload.commentId && comment.likes >= 0
+                comment._id === action.payload.commentId && comment.likes >= 0
                   ? { ...comment, likes: comment.likes + 1 }
                   : comment
               ),
@@ -84,16 +85,14 @@ export const tweetsReducer = (state = initialState, action) => {
       return data;
 
     case DISLIKE_COMMENT:
-      console.log("comment Id", action.payload.commentId);
-      console.log("tweetId", action.payload.tweetId);
       const Data = {
         ...state,
         tweets: state.tweets.map((tweet) => {
-          if (tweet.id === action.payload.tweetId) {
+          if (tweet._id === action.payload.tweetId) {
             return {
               ...tweet,
               comments: tweet.comments.map((comment) =>
-                comment.id === action.payload.commentId && comment.likes > 0
+                comment._id === action.payload.commentId && comment.likes > 0
                   ? { ...comment, likes: comment.likes - 1 }
                   : comment
               ),
@@ -144,26 +143,44 @@ export const tweetsReducer = (state = initialState, action) => {
       };
 
 
-      case TWEET_FETCH_START:
-        return {
-          ...state,
-          loading: true,
-          error: null,
-        };
+    case TWEET_FETCH_START:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
 
-      case TWEET_FETCH_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          tweets: [...action.payload],
-        };
+    case TWEET_FETCH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        tweets: [...action.payload],
+      };
 
-      case TWEET_FETCH_FAILED:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
+    case TWEET_FETCH_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case FETCH_COMMENTS_START:
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+      };
+    case FETCH_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        comments: action.payload, 
+        error: null,
+      };
+    case FETCH_COMMENTS_FAILED:
+      return {
+        ...state,
+        comments: [],
+        error: action.payload,
+      };
     default:
       return state;
   }

@@ -1,52 +1,106 @@
-import "./ShowComments.css";
+import React from "react";
 import { Button } from "@mui/material";
 import { FcLike, FcDislike } from "react-icons/fc";
 import Avatar from "react-avatar";
+import { BASE_URL } from "../../config";
 
-const ShowComments = ({
-  comments = [],
-  tweetId,
-  likeComment,
-  dislikeComment,
-}) => {
-  const handleLikeComment = (commentId) => {
-    likeComment(tweetId, commentId);
+const ShowComments = ({ comments,  }) => {
+
+  // const handleLikeComment = async () => {
+  //   try {
+  //     const res = await fetch(`${BASE_URL}/ likecomment`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ CommentId: commentId }), 
+  //     });
+
+  //     if (!res.ok) {
+  //       throw new Error('Failed to like comment');
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to like comment:', error);
+  //   }
+  // };
+
+  const handleLikeComment = async (commentId) => {
+    try {
+      const response = await fetch('/api/likecomment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ CommentId: commentId }), // Ensure that CommentId is correctly sent
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to like comment');
+      }
+  
+      const data = await response.json();
+      console.log(data);
+      // Handle response data as needed
+    } catch (error) {
+      console.error('Failed to like comment:', error);
+    }
   };
+  
+  // Example usage:
+  const commentId = 'your_comment_id_here';
+  handleLikeComment(commentId);
 
-  const handleDislikeComment = (commentId) => {
-    dislikeComment(tweetId, commentId);
+  const handleDislikeComment = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/dislikecomment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ CommentId: commentId }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to dislike comment');
+      }
+    } catch (error) {
+      console.error('Failed to dislike comment:', error);
+    }
   };
 
   return (
     <div className="comment-container border-gray-200">
-      {comments.map((comment, commentIndex) => (
-        <li key={commentIndex} className="comment-item">
-          <div className="comment-avatar flex">
-            <Avatar
-              src="https://pbs.twimg.com/profile_images/1661229397880492033/-1d0znir_400x400.jpg"
-              size="30"
-              round={true}
-            />
-          </div>
-          <div className="comment-content">
-            <div className="comment-author flex ml-2 items-center">
-              <h2>Harsa Dash</h2>
-              <p className="text-gray-400 text-sm pl-2">@Harsa_Dash</p>
+      {comments && comments.length > 0 ? (
+        comments.map((comment, commentIndex) => (
+          <div key={commentIndex} className="comment-item flex">
+            <div className="comment-avatar flex items-start">
+              <Avatar
+                src="https://pbs.twimg.com/profile_images/1661229397880492033/-1d0znir_400x400.jpg"
+                size="30"
+                round={true}
+              />
             </div>
-
-            <p className="comment-text">{comment.text}</p>
-            <div className="flex items-center">
-              <Button onClick={() => handleLikeComment(comment.id)}>
-                <FcLike size={"15px"} />
-              </Button>
-              <div>{comment.likes} </div>
-              <Button onClick={() => handleDislikeComment(comment.id)}>
-                <FcDislike size={"15px"} />
-              </Button>
+            <div className="comment-content">
+              <div className="comment-author flex  items-center">
+                <h2>Harsa Dash</h2>
+                <p className="text-gray-400 text-sm pl-2">@Harsa_Dash</p>
+              </div>
+              <p className="comment-text">{comment.text}</p>
+              <div className="flex items-center">
+                <Button onClick={handleLikeComment}>
+                  <FcLike size={"15px"} />
+                </Button>
+                <div>{comment.likes} </div>
+                <Button onClick={handleDislikeComment}>
+                  <FcDislike size={"15px"} />
+                </Button>
+              </div>
             </div>
           </div>
-        </li>
-      ))}
+        ))
+      ) : (
+        <p>No comments yet</p>
+      )}
     </div>
   );
 };

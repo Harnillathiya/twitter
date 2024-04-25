@@ -1,18 +1,10 @@
 import React from "react";
 import Avatar from "react-avatar";
-import TweetItem from "./TweetItem";
 import ShowComments from "./ShowComments";
+import TweetItem from "./TweetItem";
 
+const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment, onDislikeComment, onLikeComment }) => {
 
-
-const Tweet = ({
-  tweets,
-  onTweetLike,
-  onTweetUnLike,
-  onAddComment,
-  onDislikeComment,
-  onLikeComment,
-}) => {
   const getTimeAgo = (timestamp) => {
     const timeDifference = Date.now() - timestamp;
     const seconds = Math.floor(timeDifference / 1000);
@@ -28,6 +20,7 @@ const Tweet = ({
       return `${Math.floor(seconds / 86400)} days ago`;
     }
   };
+
   return (
     <div className="p-4">
       <div>
@@ -51,7 +44,7 @@ const Tweet = ({
             </div>
           </div>
         </div>
-        <div className="mt-4  tweet-area">
+        <div className="mt-4 tweet-area">
           <div>
             {tweets.map((tweet, index) => (
               <div key={index}>
@@ -62,13 +55,13 @@ const Tweet = ({
                   tweet={tweet}
                   likeTweet={onTweetLike}
                   unlikeTweet={onTweetUnLike}
-                  setCommentText={onAddComment}
+                  onAddComment={onAddComment}
                 />
                 <ShowComments
+                  tweetId={tweet._id}
+                  onLikeComment={onLikeComment}
+                  onDislikeComment={onDislikeComment}
                   comments={tweet.comments}
-                  tweetId={tweet.id}
-                  likeComment={onLikeComment}
-                  dislikeComment={onDislikeComment}
                 />
               </div>
             ))}

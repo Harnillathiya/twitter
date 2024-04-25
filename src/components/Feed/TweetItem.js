@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-const TweetItem = ({ tweet, unlikeTweet, likeTweet }) => {
+const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState("");
 
@@ -93,21 +93,18 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet }) => {
         },
         body: JSON.stringify({ tweetId: tweet._id, text: comment }),
       });
-      console.log(tweet._id);
       if (!res.ok) {
         const errorMessage = await res.text();
         throw new Error(`Failed to submit comment: ${errorMessage}`);
       }
-      const updatedTweet = await res.json();
-      setComment(updatedTweet.comments);
-      console.log(updatedTweet);
+      const response = await res.json();
       handleClose();
+      dispatch(onAddComment(tweet._id,response.data))
     } catch (error) {
-      console.error(error.message);
-      alert(error.message);
+      console.error(error);
     }
   };
-  
+
 
   const handleBookmarkSave = (tweetId) => {
     const tweetData = {
@@ -155,16 +152,7 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet }) => {
               value={comment}
               onChange={(e) => changeComment(e)}
               placeholder="write a comment...."
-              style={{
-                width: "100%",
-                height: "100px",
-                borderRadius: "10px",
-                padding: "10px",
-                fontSize: "16px",
-                marginTop: "10px",
-                border: "1px solid #ccc",
-              }}
-            />
+              style={{ width: "100%", height: "100px", borderRadius: "10px", padding: "10px", fontSize: "16px", marginTop: "10px", border: "1px solid #ccc", }} />
             <Button
               onClick={handleComment}
               variant="contained"
@@ -185,11 +173,11 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet }) => {
         </Modal>
         <div className="flex items-center">
           {!tweet.isHighlight ? (
-            <Button onClick={() => handleBookmarkSave(tweet.id)}>
+            <Button onClick={() => handleBookmarkSave(tweet._id)}>
               <FaRegBookmark size={24} />
             </Button>
           ) : (
-            <Button onClick={() => handleBookMarkUnSave(tweet.id)}>
+            <Button onClick={() => handleBookMarkUnSave(tweet._id)}>
               <FaBookmark size={24} />
             </Button>
           )}
