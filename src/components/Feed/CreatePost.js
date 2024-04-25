@@ -30,7 +30,6 @@ const CreatePost = (props) => {
     };
     setTweet("");
     setError(null);
-    props.onSaveTweet(tweetPayload);
 
     try {
       const res = await fetch(`${BASE_URL}/Tweet`, {
@@ -42,7 +41,7 @@ const CreatePost = (props) => {
       });
 
       const result = await res.json();
-      console.log(result)
+      props.onSaveTweet(result.data);
       if (!res.ok) throw new Error(result.message);
 
     } catch (error) {

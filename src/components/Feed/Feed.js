@@ -4,19 +4,12 @@ import Tweet from "./Tweet";
 import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { tweetFetchStart, TWEET_FETCH_SUCCESS, TWEET_FETCH_FAILED } from "../../redux/action";
-import {
-  addTweet,
-  likeTweet,
-  unlikeTweet,
-  addComment,
-  likeComment,
-  dislikeComment,
-} from "../../redux/action";
+import { addTweet, likeTweet, unlikeTweet, addComment, likeComment, dislikeComment, } from "../../redux/action";
 
 const Feed = () => {
   const dispatch = useDispatch();
   const tweets = useSelector((state) => state.tweets.tweets) || [];
-  
+
 
   const onSaveTweet = (payload) => {
     dispatch(addTweet(payload));
@@ -45,11 +38,9 @@ const Feed = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-       const response = await fetch('http://localhost:8000/api/showTweet');
-       const data = await response.json();
-       
-
-      dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
+        const response = await fetch('http://localhost:8000/api/showTweet');
+        const data = await response.json();
+        dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
       } catch (err) {
         console.error(err)
         dispatch({ type: TWEET_FETCH_FAILED, payload: err.message });
@@ -57,7 +48,7 @@ const Feed = () => {
     }
     dispatch(tweetFetchStart())
     fetchData()
-  },[dispatch])
+  }, [dispatch])
 
   return (
     <Container maxWidth="sm">
