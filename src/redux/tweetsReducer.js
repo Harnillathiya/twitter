@@ -8,16 +8,12 @@ import {
   TWEET_FETCH_START,
   TWEET_FETCH_SUCCESS,
   TWEET_FETCH_FAILED,
-  FETCH_COMMENTS_SUCCESS,
-  FETCH_COMMENTS_FAILED,
-  FETCH_COMMENTS_START,
 } from "./action";
 import { LIKE_TWEET, UNLIKE_TWEET, ADD_COMMENT } from "../redux/action";
 
 const initialState = {
   loading: false,
   tweets: [],
-  comments: [],     
   error: null,
 };
 
@@ -66,42 +62,38 @@ export const tweetsReducer = (state = initialState, action) => {
       };
 
     case LIKE_COMMENT:
-      const data = {
+      return {
         ...state,
-        tweets: state.tweets.map((tweet) => {
-          if (tweet._id === action.payload.tweetId) {
-            return {
+        tweets: state.tweets.map((tweet) =>
+          tweet._id === action.payload.tweetId
+            ? {
               ...tweet,
               comments: tweet.comments.map((comment) =>
-                comment._id === action.payload.commentId && comment.likes >= 0
+                comment._id === action.payload.commentId
                   ? { ...comment, likes: comment.likes + 1 }
                   : comment
               ),
-            };
-          }
-          return tweet;
-        }),
+            }
+            : tweet
+        ),
       };
-      return data;
 
     case DISLIKE_COMMENT:
-      const Data = {
+      return {
         ...state,
-        tweets: state.tweets.map((tweet) => {
-          if (tweet._id === action.payload.tweetId) {
-            return {
+        tweets: state.tweets.map((tweet) =>
+          tweet._id === action.payload.tweetId
+            ? {
               ...tweet,
               comments: tweet.comments.map((comment) =>
                 comment._id === action.payload.commentId && comment.likes > 0
                   ? { ...comment, likes: comment.likes - 1 }
                   : comment
               ),
-            };
-          }
-          return tweet;
-        }),
+            }
+            : tweet
+        ),
       };
-      return Data;
 
     case SHOW_TWEET:
       if (tweetId === action.payload.tweetId) {
@@ -112,36 +104,21 @@ export const tweetsReducer = (state = initialState, action) => {
       }
       return state;
 
-    case ADD_TO_HIGHLIGHT:
-      return {
-        ...state,
-        tweets: state.tweets.map((item) => {
-          if (item.id === action.payload.tweetId) {
-            return {
-              ...item,
-              isHighlight: true,
-            };
-          } else {
-            return item;
-          }
-        }),
-      };
-
-    case DELETE_TO_HIGHLIGHT:
-      return {
-        ...state,
-        tweets: state.tweets.map((item) => {
-          if (item.id === action.payload.tweetId) {
-            return {
-              ...item,
-              isHighlight: false,
-            };
-          } else {
-            return item;
-          }
-        }),
-      };
-
+      case ADD_TO_HIGHLIGHT:
+        return {
+          ...state,
+          tweets: state.tweets.map((tweet) =>
+            tweet._id === action.payload ? { ...tweet, isHighlight: true } : tweet
+          ),
+        };
+  
+      case DELETE_TO_HIGHLIGHT:
+        return {
+          ...state,
+          tweets: state.tweets.map((tweet) =>
+            tweet._id === action.payload ? { ...tweet, isHighlight: false } : tweet
+          ),
+        };
 
     case TWEET_FETCH_START:
       return {
@@ -161,24 +138,6 @@ export const tweetsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.payload,
-      };
-
-    case FETCH_COMMENTS_START:
-      return {
-        ...state,
-        comments: [...state.comments, action.payload],
-      };
-    case FETCH_COMMENTS_SUCCESS:
-      return {
-        ...state,
-        comments: action.payload, 
-        error: null,
-      };
-    case FETCH_COMMENTS_FAILED:
-      return {
-        ...state,
-        comments: [],
         error: action.payload,
       };
     default:

@@ -99,26 +99,51 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
       }
       const response = await res.json();
       handleClose();
-      dispatch(onAddComment(tweet._id,response.data))
+      dispatch(onAddComment(tweet._id, response.data))
     } catch (error) {
       console.error(error);
     }
   };
 
 
-  const handleBookmarkSave = (tweetId) => {
-    const tweetData = {
-      tweetId,
-    };
-    dispatch(addToHighlight(tweetData));
+  const handleBookmarkSave = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/highlights/${tweet._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        throw new Error("Failed to add highlight");
+      }
+      dispatch(addToHighlight(tweet._id));
+    } catch (error) {
+      console.error("Failed to add highlight:", error);
+    }
   };
 
-  const handleBookMarkUnSave = (tweetId) => {
-    const tweetData = {
-      tweetId,
-    };
-    dispatch(deleteToHighlight(tweetData));
+  const handleBookMarkUnSave = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/tweets/removeHighlight/${tweet._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 200) {
+        dispatch(deleteToHighlight(tweet._id));
+      } else if (res.status === 404) {
+        throw new Error("Tweet or highlight not found");
+      } else {
+        throw new Error("Failed to remove highlight");
+      }
+    } catch (error) {
+      console.error("Failed to remove highlight:", error);
+    }
   };
+
+
 
   return (
     <div className="flex p-3 items-center w-100" key={tweet?.id}>
@@ -173,11 +198,11 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
         </Modal>
         <div className="flex items-center">
           {!tweet.isHighlight ? (
-            <Button onClick={() => handleBookmarkSave(tweet._id)}>
+            <Button onClick={handleBookmarkSave}>
               <FaRegBookmark size={24} />
             </Button>
           ) : (
-            <Button onClick={() => handleBookMarkUnSave(tweet._id)}>
+            <Button onClick={handleBookMarkUnSave}>
               <FaBookmark size={24} />
             </Button>
           )}
