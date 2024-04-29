@@ -10,6 +10,21 @@ const Feed = () => {
   const dispatch = useDispatch();
   const tweets = useSelector((state) => state.tweets.tweets) || [];
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('http://localhost:8000/api/showTweet');
+        const data = await response.json();
+        dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
+        console.log(data, "data comment");
+      } catch (err) {
+        console.error(err)
+        dispatch({ type: TWEET_FETCH_FAILED, payload: err.message });
+      }
+    }
+    dispatch(tweetFetchStart())
+    fetchData()
+  }, [dispatch])
 
   const onSaveTweet = (payload) => {
     dispatch(addTweet(payload));
@@ -34,21 +49,6 @@ const Feed = () => {
   const onDislikeComment = (tweetId, commentId) => {
     dispatch(dislikeComment(tweetId, commentId));
   };
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('http://localhost:8000/api/showTweet');
-        const data = await response.json();
-        dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
-      } catch (err) {
-        console.error(err)
-        dispatch({ type: TWEET_FETCH_FAILED, payload: err.message });
-      }
-    }
-    dispatch(tweetFetchStart())
-    fetchData()
-  }, [dispatch])
 
   return (
     <Container maxWidth="sm">
