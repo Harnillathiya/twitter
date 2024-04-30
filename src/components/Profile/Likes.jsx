@@ -1,70 +1,92 @@
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { SlDislike, SlLike } from "react-icons/sl";
-import { BASE_URL } from "../../config";
+import { likeTweet, unlikeTweet } from "../../redux/action";
 
 const Likes = () => {
-  const tweets = useSelector((state) => state.tweets.tweets);
+  const [tweetsWithMostLikes, setTweetsWithMostLikes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTweetsWithMostLikes = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('http://localhost:8000/api/tweets/most-likes');
+        if (!response.ok) {
+          throw new Error('Failed to fetch tweets with most likes');
+        }
+        const data = await response.json();
+        setTweetsWithMostLikes(data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching tweets with most likes:', error);
+        setError('Failed to fetch tweets with most likes');
+        setLoading(false);
+      }
+    };
+
+    fetchTweetsWithMostLikes();
+  }, []);
 
   const handleLike = async (tweetId) => {
     try {
-      const response = await fetch(`${BASE_URL}/like`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ tweetId }),
+      await likeTweet(tweetId); // Dispatch action to like tweet
+      // Update likes count in state
+      setTweetsWithMostLikes(prevTweets => {
+        return prevTweets.map(tweet => {
+          if (tweet._id === tweetId) {
+            return { ...tweet, likes: tweet.likes + 1 };
+          }
+          return tweet;
+        });
       });
-      const data = await response.json();
-      if (!data.success) {
-        console.error("Failed to like tweet:", data.message);
-      }
     } catch (error) {
-      console.error("Error liking tweet:", error);
+      console.error('Failed to like tweet:', error);
     }
   };
 
   const handleUnlike = async (tweetId) => {
     try {
-      const response = await fetch(`${BASE_URL}/unlike`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ tweetId }),
+      await unlikeTweet(tweetId); // Dispatch action to unlike tweet
+      // Update likes count in state
+      setTweetsWithMostLikes(prevTweets => {
+        return prevTweets.map(tweet => {
+          if (tweet._id === tweetId && tweet.likes > 0) {
+            return { ...tweet, likes: tweet.likes - 1 };
+          }
+          return tweet;
+        });
       });
-      const data = await response.json();
-      if (!data.success) {
-        console.error("Failed to unlike tweet:", data.message);
-      }
     } catch (error) {
-      console.error("Error unliking tweet:", error);
+      console.error('Failed to unlike tweet:', error);
     }
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>
-      {tweets?.map((item, index) => {
-        return (
-          <div key={index}>
-            {item.likes > 0 ? (
-              <div>
-                <p>{item.tweet}</p>
-                <div style={{ display: "flex" }}>
-                  <Button onClick={() => handleLike(item.likes)}>
-                    <SlLike size={"24px"} />
-                  </Button>
-                  <p>{item?.likes}</p>
-                  <Button onClick={() => handleUnlike(item.likes)}>
-                    <SlDislike size={"24px"} />
-                  </Button>
-                </div>
-              </div>
-            ) : null}
+      {tweetsWithMostLikes.map((tweet, index) => (
+        <div key={index}>
+          <p>{tweet.tweet}</p>
+          <div style={{ display: "flex" }}>
+            <Button onClick={() => handleLike(tweet._id)}>
+              <SlLike size={"24px"} />
+            </Button>
+            <p>{tweet.likes}</p>
+            <Button onClick={() => handleUnlike(tweet._id)}>
+              <SlDislike size={"24px"} />
+            </Button>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 };
