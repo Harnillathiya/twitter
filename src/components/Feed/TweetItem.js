@@ -40,41 +40,38 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
   const handleLike = async () => {
     try {
       const res = await fetch(`${BASE_URL}/like`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ tweetId: tweet._id }),
       });
 
       if (!res.ok) {
-        throw new Error('Failed to like tweet');
+        throw new Error("Failed to like tweet");
       }
       dispatch(likeTweet(tweet._id));
-
     } catch (error) {
-      console.error('Failed to like tweet:', error);
+      console.error("Failed to like tweet:", error);
     }
-  }
+  };
   const handleUnlike = async () => {
     try {
       const res = await fetch(`${BASE_URL}/unlike`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ tweetId: tweet._id }),
       });
       if (!res.ok) {
-        throw new Error('Failed to unlike tweet');
+        throw new Error("Failed to unlike tweet");
       }
       dispatch(unlikeTweet(tweet._id));
     } catch (error) {
-      console.error('Failed to unlike tweet:', error);
+      console.error("Failed to unlike tweet:", error);
     }
   };
-
-
 
   const changeComment = (e) => {
     setComment(e.target.value);
@@ -87,9 +84,9 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
     }
     try {
       const res = await fetch(`${BASE_URL}/comments`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ tweetId: tweet._id, text: comment }),
       });
@@ -99,12 +96,11 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
       }
       const response = await res.json();
       handleClose();
-      dispatch(onAddComment(tweet._id, response.data))
+      dispatch(onAddComment(tweet._id, response.data));
     } catch (error) {
       console.error(error);
     }
   };
-
 
   const handleBookmarkSave = async () => {
     try {
@@ -125,12 +121,15 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
 
   const handleBookMarkUnSave = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/tweets/removeHighlight/${tweet._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${BASE_URL}/tweets/removeHighlight/${tweet._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (res.status === 200) {
         dispatch(deleteToHighlight(tweet._id));
       } else if (res.status === 404) {
@@ -142,8 +141,6 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
       console.error("Failed to remove highlight:", error);
     }
   };
-
-
 
   return (
     <div className="flex p-3 items-center w-100" key={tweet?.id}>
@@ -177,7 +174,16 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
               value={comment}
               onChange={(e) => changeComment(e)}
               placeholder="write a comment...."
-              style={{ width: "100%", height: "100px", borderRadius: "10px", padding: "10px", fontSize: "16px", marginTop: "10px", border: "1px solid #ccc", }} />
+              style={{
+                width: "100%",
+                height: "100px",
+                borderRadius: "10px",
+                padding: "10px",
+                fontSize: "16px",
+                marginTop: "10px",
+                border: "1px solid #ccc",
+              }}
+            />
             <Button
               onClick={handleComment}
               variant="contained"
