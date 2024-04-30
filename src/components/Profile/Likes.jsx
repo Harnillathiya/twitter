@@ -1,23 +1,47 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { likeTweet, unlikeTweet } from "../../redux/action";
 import { Button } from "@mui/material";
 import { SlDislike, SlLike } from "react-icons/sl";
+import { BASE_URL } from "../../config";
 
 const Likes = () => {
   const tweets = useSelector((state) => state.tweets.tweets);
 
-  const handleLike = (likes) => {
-    if (likes && likes.id) {
-      likeTweet(likes.id);
+  const handleLike = async (tweetId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/like`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tweetId }),
+      });
+      const data = await response.json();
+      if (!data.success) {
+        console.error("Failed to like tweet:", data.message);
+      }
+    } catch (error) {
+      console.error("Error liking tweet:", error);
     }
   };
 
-  const handleUnlike = (likes) => {
-    if (likes && likes.id) {
-      unlikeTweet(likes.id);
+  const handleUnlike = async (tweetId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/unlike`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tweetId }),
+      });
+      const data = await response.json();
+      if (!data.success) {
+        console.error("Failed to unlike tweet:", data.message);
+      }
+    } catch (error) {
+      console.error("Error unliking tweet:", error);
     }
   };
+
 
   return (
     <div>

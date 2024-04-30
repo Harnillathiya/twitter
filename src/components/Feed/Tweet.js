@@ -3,8 +3,14 @@ import Avatar from "react-avatar";
 import ShowComments from "./ShowComments";
 import TweetItem from "./TweetItem";
 
-const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment, onDislikeComment, onLikeComment }) => {
-
+const Tweet = ({
+  tweets,
+  onTweetLike,
+  onTweetUnLike,
+  onAddComment,
+  onDislikeComment,
+  onLikeComment,
+}) => {
   const getTimeAgo = (timestamp) => {
     const timeDifference = Date.now() - timestamp;
     const seconds = Math.floor(timeDifference / 1000);
@@ -20,7 +26,6 @@ const Tweet = ({ tweets, onTweetLike, onTweetUnLike, onAddComment, onDislikeComm
       return `${Math.floor(seconds / 86400)} days ago`;
     }
   };
-
   return (
     <div className="p-4">
       <div>
