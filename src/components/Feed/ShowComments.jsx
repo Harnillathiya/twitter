@@ -12,41 +12,39 @@ const ShowComments = ({ comments, tweetId }) => {
   const handleLikeComment = async (commentId) => {
     try {
       const res = await fetch(`${BASE_URL}/likecomment`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ tweetId, commentId }), 
+        body: JSON.stringify({ tweetId, commentId }),
       });
       if (!res.ok) {
-        throw new Error('Failed to like comment');
+        throw new Error("Failed to like comment");
       }
-      dispatch(likeComment(tweetId, commentId)); 
-      console.log('Comment liked successfully:', commentId);
+      dispatch(likeComment(tweetId, commentId));
+      console.log("Comment liked successfully:", commentId);
     } catch (error) {
-      console.error('Failed to like comment:', error);
+      console.error("Failed to like comment:", error);
     }
   };
 
   const handleDislikeComment = async (commentId) => {
     try {
       const res = await fetch(`${BASE_URL}/dislikecomment`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ tweetId, commentId }), 
+        body: JSON.stringify({ tweetId, commentId }),
       });
       if (!res.ok) {
-        throw new Error('Failed to dislike comment');
+        throw new Error("Failed to dislike comment");
       }
-      dispatch(dislikeComment(tweetId, commentId)); 
+      dispatch(dislikeComment(tweetId, commentId));
     } catch (error) {
-      console.error('Failed to dislike comment:', error);
+      console.error("Failed to dislike comment:", error);
     }
   };
-
-
 
   return (
     <div className="comment-container border-gray-200">
@@ -67,11 +65,11 @@ const ShowComments = ({ comments, tweetId }) => {
               </div>
               <p className="comment-text">{comment.text}</p>
               <div className="flex items-center">
-                <Button onClick={() => handleLikeComment(comment._id)}> 
+                <Button onClick={() => handleLikeComment(comment._id)}>
                   <FcLike size={"15px"} />
                 </Button>
                 <div>{comment.likes} </div>
-                <Button onClick={() => handleDislikeComment(comment._id)}> 
+                <Button onClick={() => handleDislikeComment(comment._id)}>
                   <FcDislike size={"15px"} />
                 </Button>
               </div>

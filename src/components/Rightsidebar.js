@@ -17,7 +17,6 @@ const Rightsidebar = () => {
             className="bg-transparent outline-none px-4 p-1"
           />
         </div>
-
         <div className="bg-gray-200 mt-4 rounded-3xl p-4">
           <div className="mb-4">
             <p className="font-bold">TypeScript</p>
@@ -40,12 +39,10 @@ const Rightsidebar = () => {
           </p>
           <p className="text-blue-500 mt-4">Show more</p>
         </div>
-
         <div className="bg-gray-200 mt-4 rounded-3xl p-4">
           <div>
             <p className="font-bold text-2xl">Who to follow</p>
           </div>
-
           <div className="main-flex">
             <div>
               <img src={dhoni} alt="" className="dhoni-img" />
@@ -60,7 +57,6 @@ const Rightsidebar = () => {
               </button>
             </div>
           </div>
-
           <div className="main-flex">
             <div>
               <img src={kohli} alt="" className="dhoni-img" />
@@ -75,7 +71,6 @@ const Rightsidebar = () => {
               </button>
             </div>
           </div>
-
           <div className="main-flex">
             <div>
               <img src={ruturaj} alt="" className="dhoni-img" />

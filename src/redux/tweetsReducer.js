@@ -50,10 +50,10 @@ export const tweetsReducer = (state = initialState, action) => {
       const updatedTweets = state.tweets.map((tweet) =>
         tweet._id === tweetId
           ? {
-            ...tweet,
-            comments: [comment, ...(tweet.comments || [])],
-            commentsCount: (tweet.commentsCount || 0) + 1,
-          }
+              ...tweet,
+              comments: [comment, ...(tweet.comments || [])],
+              commentsCount: (tweet.commentsCount || 0) + 1,
+            }
           : tweet
       );
       return {
@@ -67,13 +67,13 @@ export const tweetsReducer = (state = initialState, action) => {
         tweets: state.tweets.map((tweet) =>
           tweet._id === action.payload.tweetId
             ? {
-              ...tweet,
-              comments: tweet.comments.map((comment) =>
-                comment._id === action.payload.commentId
-                  ? { ...comment, likes: comment.likes + 1 }
-                  : comment
-              ),
-            }
+                ...tweet,
+                comments: tweet.comments.map((comment) =>
+                  comment._id === action.payload.commentId
+                    ? { ...comment, likes: comment.likes + 1 }
+                    : comment
+                ),
+              }
             : tweet
         ),
       };
@@ -84,13 +84,13 @@ export const tweetsReducer = (state = initialState, action) => {
         tweets: state.tweets.map((tweet) =>
           tweet._id === action.payload.tweetId
             ? {
-              ...tweet,
-              comments: tweet.comments.map((comment) =>
-                comment._id === action.payload.commentId && comment.likes > 0
-                  ? { ...comment, likes: comment.likes - 1 }
-                  : comment
-              ),
-            }
+                ...tweet,
+                comments: tweet.comments.map((comment) =>
+                  comment._id === action.payload.commentId && comment.likes > 0
+                    ? { ...comment, likes: comment.likes - 1 }
+                    : comment
+                ),
+              }
             : tweet
         ),
       };
@@ -104,21 +104,23 @@ export const tweetsReducer = (state = initialState, action) => {
       }
       return state;
 
-      case ADD_TO_HIGHLIGHT:
-        return {
-          ...state,
-          tweets: state.tweets.map((tweet) =>
-            tweet._id === action.payload ? { ...tweet, isHighlight: true } : tweet
-          ),
-        };
-  
-      case DELETE_TO_HIGHLIGHT:
-        return {
-          ...state,
-          tweets: state.tweets.map((tweet) =>
-            tweet._id === action.payload ? { ...tweet, isHighlight: false } : tweet
-          ),
-        };
+    case ADD_TO_HIGHLIGHT:
+      return {
+        ...state,
+        tweets: state.tweets.map((tweet) =>
+          tweet._id === action.payload ? { ...tweet, isHighlight: true } : tweet
+        ),
+      };
+
+    case DELETE_TO_HIGHLIGHT:
+      return {
+        ...state,
+        tweets: state.tweets.map((tweet) =>
+          tweet._id === action.payload
+            ? { ...tweet, isHighlight: false }
+            : tweet
+        ),
+      };
 
     case TWEET_FETCH_START:
       return {

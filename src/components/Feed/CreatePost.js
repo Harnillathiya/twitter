@@ -10,14 +10,10 @@ import "./Feed.css";
 import { BASE_URL } from "../../config";
 
 const CreatePost = (props) => {
-
-
   const [tweet, setTweet] = useState("");
   const [error, setError] = useState(null);
- 
 
-  //reduxdata strore
-  const  saveTweet = async () => {
+  const saveTweet = async () => {
     if (tweet.trim() === "") {
       setError("Tweet cannot be empty.");
       return;
@@ -30,7 +26,6 @@ const CreatePost = (props) => {
     };
     setTweet("");
     setError(null);
-
     try {
       const res = await fetch(`${BASE_URL}/Tweet`, {
         method: "POST",
@@ -39,17 +34,15 @@ const CreatePost = (props) => {
         },
         body: JSON.stringify(tweetPayload),
       });
-
       const result = await res.json();
       props.onSaveTweet(result.data);
       if (!res.ok) throw new Error(result.message);
-
     } catch (error) {
-      console.error(error)
+      console.error(error);
       alert(error.message);
     }
-    
   };
+
   return (
     <div className="w-[100%]">
       <div className="mt-2">
@@ -79,8 +72,6 @@ const CreatePost = (props) => {
               onChange={(e) => {
                 setTweet(e.target.value);
                 setError(null);
-                // handleChange()
-                
               }}
               style={{
                 borderRadius: "10px",
@@ -111,8 +102,9 @@ const CreatePost = (props) => {
               </a>
             </div>
             <button
-              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === "" && "opacity-50 cursor-not-allowed"
-                }`} 
+              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${
+                tweet.trim() === "" && "opacity-50 cursor-not-allowed"
+              }`}
               onClick={() => {
                 saveTweet();
               }}

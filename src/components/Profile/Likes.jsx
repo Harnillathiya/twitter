@@ -9,32 +9,33 @@ const Likes = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTweetsWithMostLikes = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch('http://localhost:8000/api/tweets/most-likes');
-        if (!response.ok) {
-          throw new Error('Failed to fetch tweets with most likes');
-        }
-        const data = await response.json();
-        setTweetsWithMostLikes(data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching tweets with most likes:', error);
-        setError('Failed to fetch tweets with most likes');
-        setLoading(false);
-      }
-    };
-
     fetchTweetsWithMostLikes();
   }, []);
 
+  const fetchTweetsWithMostLikes = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/tweets/most-likes"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch tweets with most likes");
+      }
+      const data = await response.json();
+      setTweetsWithMostLikes(data.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching tweets with most likes:", error);
+      setError("Failed to fetch tweets with most likes");
+      setLoading(false);
+    }
+  };
+
   const handleLike = async (tweetId) => {
     try {
-      await likeTweet(tweetId); // Dispatch action to like tweet
-      // Update likes count in state
-      setTweetsWithMostLikes(prevTweets => {
-        return prevTweets.map(tweet => {
+      await likeTweet(tweetId);
+      setTweetsWithMostLikes((prevTweets) => {
+        return prevTweets.map((tweet) => {
           if (tweet._id === tweetId) {
             return { ...tweet, likes: tweet.likes + 1 };
           }
@@ -42,16 +43,15 @@ const Likes = () => {
         });
       });
     } catch (error) {
-      console.error('Failed to like tweet:', error);
+      console.error("Failed to like tweet:", error);
     }
   };
 
   const handleUnlike = async (tweetId) => {
     try {
-      await unlikeTweet(tweetId); // Dispatch action to unlike tweet
-      // Update likes count in state
-      setTweetsWithMostLikes(prevTweets => {
-        return prevTweets.map(tweet => {
+      await unlikeTweet(tweetId);
+      setTweetsWithMostLikes((prevTweets) => {
+        return prevTweets.map((tweet) => {
           if (tweet._id === tweetId && tweet.likes > 0) {
             return { ...tweet, likes: tweet.likes - 1 };
           }
@@ -59,7 +59,7 @@ const Likes = () => {
         });
       });
     } catch (error) {
-      console.error('Failed to unlike tweet:', error);
+      console.error("Failed to unlike tweet:", error);
     }
   };
 

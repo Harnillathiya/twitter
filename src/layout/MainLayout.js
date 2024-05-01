@@ -7,13 +7,13 @@ import Rightsidebar from "../components/Rightsidebar";
 
 const MainLayout = () => {
   return (
-      <Container maxWidth="lg">
-    <div className="main-layout">
-      <Leftsidebar />
+    <Container maxWidth="lg">
+      <div className="main-layout">
+        <Leftsidebar />
         <Outlet />
-      <Rightsidebar />
-    </div>
-      </Container>
+        <Rightsidebar />
+      </div>
+    </Container>
   );
 };
 
