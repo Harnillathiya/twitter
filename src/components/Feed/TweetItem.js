@@ -46,7 +46,6 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
         },
         body: JSON.stringify({ tweetId: tweet._id }),
       });
-
       if (!res.ok) {
         throw new Error("Failed to like tweet");
       }
@@ -55,6 +54,7 @@ const TweetItem = ({ tweet, unlikeTweet, likeTweet, onAddComment }) => {
       console.error("Failed to like tweet:", error);
     }
   };
+
   const handleUnlike = async () => {
     try {
       const res = await fetch(`${BASE_URL}/unlike`, {

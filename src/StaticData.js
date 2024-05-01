@@ -172,55 +172,55 @@ export const trending = [
   },
 ];
 
-export const news=[
+export const news = [
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"Indian Muslims",
-    newsThree:"34.6K posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "Indian Muslims",
+    newsThree: "34.6K posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"#ElectionCommission",
-    newsThree:"18.3K posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "#ElectionCommission",
+    newsThree: "18.3K posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"Delhi High Court",
-    newsThree:"2,619 posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "Delhi High Court",
+    newsThree: "2,619 posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"AbkiBaar400Paar",
-    newsThree:"67.6K posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "AbkiBaar400Paar",
+    newsThree: "67.6K posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"Hindus",
-    newsThree:"130K posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "Hindus",
+    newsThree: "130K posts",
   },
   {
-    newsOne:"Trending in Business & finance",
-    newsTwo:"#HDFCBank",
-    newsThree:"1,619 posts"
+    newsOne: "Trending in Business & finance",
+    newsTwo: "#HDFCBank",
+    newsThree: "1,619 posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"Article 370",
-    newsThree:"4,318 posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "Article 370",
+    newsThree: "4,318 posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"Manmohan Singh",
-    newsThree:"133K posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "Manmohan Singh",
+    newsThree: "133K posts",
   },
   {
-    newsOne:"Trending in Business & finance",
-    newsTwo:"#Altseason2024",
-    newsThree:"1,605 posts"
+    newsOne: "Trending in Business & finance",
+    newsTwo: "#Altseason2024",
+    newsThree: "1,605 posts",
   },
   {
-    newsOne:"Trending in Politics",
-    newsTwo:"#HateSpeech",
-    newsThree:"27.6K posts"
+    newsOne: "Trending in Politics",
+    newsTwo: "#HateSpeech",
+    newsThree: "27.6K posts",
   },
-]
+];

@@ -1,4 +1,3 @@
-
 export const ADD_TWEET = "ADD_TWEET";
 export const ADD_COMMENT = "ADD_COMMENT";
 
@@ -17,9 +16,9 @@ export const TWEET_FETCH_START = "TWEET_FETCH_START";
 export const TWEET_FETCH_SUCCESS = "TWEET_FETCH_SUCCESS";
 export const TWEET_FETCH_FAILED = "TWEET_FETCH_FAILED";
 
-export const FETCH_COMMENTS_START = 'FETCH_COMMENTS_START';
-export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
-export const FETCH_COMMENTS_FAILED = 'FETCH_COMMENTS_FAILED';
+export const FETCH_COMMENTS_START = "FETCH_COMMENTS_START";
+export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
+export const FETCH_COMMENTS_FAILED = "FETCH_COMMENTS_FAILED";
 
 export const addTweet = (tweet) => ({
   type: ADD_TWEET,
@@ -60,22 +59,22 @@ export const deleteToHighlight = (payload) => ({
   payload: payload,
 });
 
- export const tweetFetchStart = (data) =>({
+export const tweetFetchStart = (data) => ({
   type: TWEET_FETCH_START,
   payload: data,
- });
+});
 
- export const tweetFetchSuccess = (data) =>({
+export const tweetFetchSuccess = (data) => ({
   type: TWEET_FETCH_SUCCESS,
   payload: data,
- });
+});
 
- export const tweetFetchFailed = (data) =>({
+export const tweetFetchFailed = (data) => ({
   type: TWEET_FETCH_FAILED,
   payload: data,
- });
+});
 
- export const fetchCommentsStart = (comment) => ({
+export const fetchCommentsStart = (comment) => ({
   type: FETCH_COMMENTS_START,
   payload: comment,
 });

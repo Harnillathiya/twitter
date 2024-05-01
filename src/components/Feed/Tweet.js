@@ -26,6 +26,7 @@ const Tweet = ({
       return `${Math.floor(seconds / 86400)} days ago`;
     }
   };
+
   return (
     <div className="p-4">
       <div>
