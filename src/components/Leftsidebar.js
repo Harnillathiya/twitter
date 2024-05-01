@@ -21,6 +21,7 @@ import { FaUserGroup } from "react-icons/fa6";
 import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
 import { IoSettingsSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -36,6 +37,8 @@ const style = {
 
 const Leftsidebar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -43,6 +46,12 @@ const Leftsidebar = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
@@ -153,12 +162,12 @@ const Leftsidebar = () => {
             </div>
           </div>
           <div className="leftmainbar">
-            <div className="">
-              <Link to="/login" className="logout-link  box">
-                <LuLogOut size={"26"} />
-                <span>logout</span>
-              </Link>
-            </div>
+            {/* <div className=""> */}
+            <button onClick={handleLogout} className="logout-link box">
+            <LuLogOut size={"26"} />
+            <span>Logout</span>
+          </button>
+            {/* </div> */}
           </div>
         </div>
       </div>

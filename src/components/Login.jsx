@@ -29,7 +29,6 @@ const Login = () => {
                 body: JSON.stringify(credentials),
             });
             const result = await res.json();
-            console.log(result, "/////////////////////////////////////////")
             if (!res.ok) throw new Error(result.message);
             localStorage.setItem("token", result.token);
             navigate('/');
@@ -55,7 +54,7 @@ const Login = () => {
                                     placeholder="Email"
                                     value={credentials.email}
                                     onChange={handleChange}
-                                    required
+                                    required autoComplete="current-email"
                                     className="login-input"
                                 />
                             </div>
@@ -66,9 +65,10 @@ const Login = () => {
                                     placeholder="Password"
                                     value={credentials.password}
                                     onChange={handleChange}
-                                    required
+                                    required autoComplete="current-password"
                                     className="login-input"
                                 />
+
                             </div>
                             <button type="submit" className="login-button">
                                 Log in

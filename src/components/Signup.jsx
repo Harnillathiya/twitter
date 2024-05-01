@@ -66,7 +66,7 @@ const Signup = () => {
           required
           className="Signup_btn"
         />
-        <button type="submit">Signup</button>
+        <button type="submit" className="signup_btn">Signup</button>
       </form>
       <p className="signin-link">
         Already have an account? <Link to="/login">Sign in</Link>
