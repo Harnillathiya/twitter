@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import loginmark from "../image/loginmark.jpeg";
-import "./Signup.css";
 import { BASE_URL } from "../config";
+import './Signup.css';
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
-    username: undefined,
-    email: undefined,
-    password: undefined,
+    username: '',
+    email: '',
+    password: '',
   });
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Signup = () => {
         body: JSON.stringify(credentials),
       });
       const result = await res.json();
-      if (!res.ok) alert(result.message);
+      if (!res.ok) throw new Error(result.message);
       navigate("/login");
     } catch (err) {
       alert(err.message);
@@ -44,6 +44,7 @@ const Signup = () => {
       <form onSubmit={handleSubmit} className="signup-form">
         <input
           type="text"
+          id="username"
           placeholder="Full Name"
           onChange={handleChange}
           required
@@ -51,6 +52,7 @@ const Signup = () => {
         />
         <input
           type="email"
+          id="email"
           placeholder="Email"
           onChange={handleChange}
           required
@@ -58,6 +60,7 @@ const Signup = () => {
         />
         <input
           type="password"
+          id="password"
           placeholder="Password"
           onChange={handleChange}
           required

@@ -153,9 +153,11 @@ const Leftsidebar = () => {
             </div>
           </div>
           <div className="leftmainbar">
-            <div className="box">
-              <LuLogOut size={"26"} />
-              <span>logout</span>
+            <div className="">
+              <Link to="/login" className="logout-link  box">
+                <LuLogOut size={"26"} />
+                <span>logout</span>
+              </Link>
             </div>
           </div>
         </div>
