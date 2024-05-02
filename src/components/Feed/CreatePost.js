@@ -8,7 +8,6 @@ import { GrSchedulePlay } from "react-icons/gr";
 import Avatar from "react-avatar";
 import "./Feed.css";
 import { BASE_URL } from "../../config";
-import { Link } from "react-router-dom";
 
 const CreatePost = (props) => {
   const [tweet, setTweet] = useState("");
@@ -49,17 +48,6 @@ const CreatePost = (props) => {
   return (
     <div className="w-[100%]">
       <div className="mt-2">
-        {/* <div className=" info postmain flex items-center justify-between border-b border-gray-200">
-          <div className="cursor-pointer hover:bg-gray-400 hover:border-b-cyan-300 w-full text-center p-4">
-            <span><Link to="/">For You</Link>
-            </span>
-          </div>
-          <div className="cursor-pointer hover:bg-gray-400 w-full text-center p-4">
-            <span > <Link to="/following">Following</Link>
-            </span>
-          </div>
-        </div> */}
-
         <div>
           <div className="flex items-center p-4">
             <div>
