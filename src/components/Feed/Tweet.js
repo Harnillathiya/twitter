@@ -41,7 +41,7 @@ const Tweet = ({
               <div className="flex ml-4 items-center">
                 <h2>Harsa Dash</h2>
                 <p className="text-gray-400 text-sm pl-2">@Harsa_Dash</p>
-                {tweets.length > 0 && (
+                {tweets?.length > 0 && (
                   <p className="text-gray-400 text-sm pl-2">
                     {getTimeAgo(tweets[0].timestamp)}
                   </p>
@@ -52,7 +52,7 @@ const Tweet = ({
         </div>
         <div className="mt-4 tweet-area">
           <div>
-            {tweets.map((tweet, index) => (
+            {tweets?.map((tweet, index) => (
               <div key={index}>
                 <p className="text-blue-500 hover:text-blue-700">
                   {tweet.tweet}
