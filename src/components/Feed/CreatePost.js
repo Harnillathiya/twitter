@@ -27,10 +27,12 @@ const CreatePost = (props) => {
     setTweet("");
     setError(null);
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch(`${BASE_URL}/Tweet`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         body: JSON.stringify(tweetPayload),
       });
@@ -46,15 +48,6 @@ const CreatePost = (props) => {
   return (
     <div className="w-[100%]">
       <div className="mt-2">
-        <div className=" info postmain flex items-center justify-between border-b border-gray-200">
-          <div className="cursor-pointer hover:bg-gray-400 hover:border-b-cyan-300 w-full text-center p-4">
-            <span>for you</span>
-          </div>
-          <div className="cursor-pointer hover:bg-gray-400 w-full text-center p-4">
-            <span>following</span>
-          </div>
-        </div>
-
         <div>
           <div className="flex items-center p-4">
             <div>
@@ -102,9 +95,8 @@ const CreatePost = (props) => {
               </a>
             </div>
             <button
-              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${
-                tweet.trim() === "" && "opacity-50 cursor-not-allowed"
-              }`}
+              className={`bg-[#1D9Df0] text-lg items-center text-black px-4 py-1 border-none rounded-full ${tweet.trim() === "" && "opacity-50 cursor-not-allowed"
+                }`}
               onClick={() => {
                 saveTweet();
               }}
