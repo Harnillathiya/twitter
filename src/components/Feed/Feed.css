@@ -14,3 +14,40 @@
   font-weight: bold;
   flex-wrap: wrap;
 }
+/* Feed.css */
+
+/* Container width */
+.container {
+  width: 100%;
+  max-width: 480px; /* Adjust as needed */
+  margin: auto;
+}
+
+/* Input field */
+.input-field {
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* Button */
+.post-button {
+  background-color: #1d9df0;
+  color: #000;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+}
+
+.post-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  margin-left: 10px;
+}

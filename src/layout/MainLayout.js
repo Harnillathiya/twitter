@@ -33,7 +33,6 @@ const MainLayout = () => {
         });
     }
   }, []);
-  console.log("/////////////",user);
   return user ? <Login /> :
 
     <Container maxWidth="lg">
