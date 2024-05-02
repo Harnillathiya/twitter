@@ -31,12 +31,12 @@ const Login = () => {
             const result = await res.json();
             if (!res.ok) throw new Error(result.message);
             localStorage.setItem("token", result.token);
+            console.log(result.token);
             navigate('/');
         } catch (error) {
             alert(error.message);
         }
     };
-
     return (
         <div className="login-container">
             <Container>
