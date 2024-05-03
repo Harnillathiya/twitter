@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import twitterlogo from "../image/twitterlogo.png";
 import { IoMdHome } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
@@ -22,6 +22,7 @@ import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import Avatar from "react-avatar";
 
 const style = {
   position: "absolute",
@@ -37,6 +38,8 @@ const style = {
 
 const Leftsidebar = () => {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
 
 
@@ -48,11 +51,44 @@ const Leftsidebar = () => {
     setOpen(false);
   };
 
-  
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+
+  useEffect(() => {
+    const fetchUserInformation = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("Token not found in localStorage");
+        }
+        console.log(token);
+
+        const response = await fetch("http://localhost:8000/api/userInformation", {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user information");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setUser(data.user);
+      } catch (error) {
+        console.error("Failed to fetch user information:", error.message);
+      }
+    };
+
+    fetchUserInformation();
+  }, []);
+
 
   return (
     <div>
@@ -162,13 +198,26 @@ const Leftsidebar = () => {
             </div>
           </div>
           <div className="leftmainbar">
-            {/* <div className=""> */}
             <button onClick={handleLogout} className="logout-link box">
-            <LuLogOut size={"26"} />
-            <span>Logout</span>
-          </button>
-            {/* </div> */}
+              <LuLogOut size={"26"} />
+              <span>Logout</span>
+            </button>
           </div>
+          {user && (
+            <div className="flex">
+              <Avatar
+                src="https://pbs.twimg.com/profile_images/1661229397880492033/-1d0znir_400x400.jpg"
+                size="40"
+                round={true}
+              />
+              <div>
+                <div className=" ml-4 items-center">
+                  <h2>{user.username}</h2>
+                  <p className="text-gray-400 text-sm ">@Harsa_Dash</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
