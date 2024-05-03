@@ -86,7 +86,7 @@ const Profile = () => {
           </div>
           <div className="following-flex">
             <p className="following">
-              <span className="one">1</span>Following
+              <span className="one">0</span>Following
             </p>
             <p className="followers">
               <span className="one">0</span>Followers
