@@ -194,3 +194,24 @@
   display: flex;
   align-items: center;
 }
+.avatar-profile-main {
+  display: flex;
+  align-items: center;
+}
+.leftmainbar_logout .box {
+  display: flex;
+  align-items: center;
+  padding: 13px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 0px;
+}
+.leftmainbar_logout :hover.box {
+  background: rgb(170, 167, 167);
+  transition: 0.8s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.profilename {
+  margin-left: 10px;
+}

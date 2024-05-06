@@ -22,7 +22,8 @@ import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import Avatar from "react-avatar";
+import { Avatar } from "antd";
+import { BASE_URL } from "../config";
 
 const style = {
   position: "absolute",
@@ -38,10 +39,32 @@ const style = {
 
 const Leftsidebar = () => {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState([]);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchUserInformation();
+  }, []);
+
+  const fetchUserInformation = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${BASE_URL}/userInformation`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch user infromation");
+      }
+      const data = await response.json();
+      setUserInfo([data.data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -51,44 +74,10 @@ const Leftsidebar = () => {
     setOpen(false);
   };
 
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
-
-  useEffect(() => {
-    const fetchUserInformation = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          throw new Error("Token not found in localStorage");
-        }
-        console.log(token);
-
-        const response = await fetch("http://localhost:8000/api/userInformation", {
-          method: "GET",
-          headers: {
-            Authorization: token,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch user information");
-        }
-
-        const data = await response.json();
-        console.log(data);
-        setUser(data.user);
-      } catch (error) {
-        console.error("Failed to fetch user information:", error.message);
-      }
-    };
-
-    fetchUserInformation();
-  }, []);
-
 
   return (
     <div>
@@ -197,27 +186,52 @@ const Leftsidebar = () => {
               </Link>
             </div>
           </div>
-          <div className="leftmainbar">
+          <div className="leftmainbar_logout">
             <button onClick={handleLogout} className="logout-link box">
               <LuLogOut size={"26"} />
               <span>Logout</span>
             </button>
-          </div>
-          {user && (
-            <div className="flex">
-              <Avatar
-                src="https://pbs.twimg.com/profile_images/1661229397880492033/-1d0znir_400x400.jpg"
-                size="40"
-                round={true}
-              />
-              <div>
-                <div className=" ml-4 items-center">
-                  <h2>{user.username}</h2>
-                  <p className="text-gray-400 text-sm ">@Harsa_Dash</p>
-                </div>
-              </div>
+            <div>
+              {userInfo.map((item, index) => {
+                return (
+                  <div key={index} className="avatar-profile-main">
+                    <div>
+                      <Avatar
+                        size="large"
+                        style={{
+                          color: "black",
+                          fontWeight: "600",
+                          fontSize: "19px",
+                        }}
+                      >
+                        {item.email?.charAt(0).toUpperCase()}
+                      </Avatar>
+                    </div>
+                    <div className="profilename ml-3">
+                      <div
+                        style={{
+                          color: "black",
+                          fontWeight: "600",
+                          fontSize: "18px",
+                        }}
+                      >
+                        {item.username}
+                      </div>
+                      <div
+                        style={{
+                          color: "black",
+                          fontWeight: "600",
+                          fontSize: "18px",
+                        }}
+                      >
+                        {item.email}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
