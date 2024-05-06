@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import twitterlogo from "../image/twitterlogo.png";
 import { IoMdHome } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
@@ -22,6 +22,8 @@ import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "antd";
+import { BASE_URL } from "../config";
 
 const style = {
   position: "absolute",
@@ -37,8 +39,32 @@ const style = {
 
 const Leftsidebar = () => {
   const [open, setOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
+
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchUserInformation();
+  }, []);
+
+  const fetchUserInformation = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${BASE_URL}/userInformation`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch user infromation");
+      }
+      const data = await response.json();
+      setUserInfo([data.data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -48,7 +74,6 @@ const Leftsidebar = () => {
     setOpen(false);
   };
 
-  
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
@@ -161,13 +186,51 @@ const Leftsidebar = () => {
               </Link>
             </div>
           </div>
-          <div className="leftmainbar">
-            {/* <div className=""> */}
+          <div className="leftmainbar_logout">
             <button onClick={handleLogout} className="logout-link box">
-            <LuLogOut size={"26"} />
-            <span>Logout</span>
-          </button>
-            {/* </div> */}
+              <LuLogOut size={"26"} />
+              <span>Logout</span>
+            </button>
+            <div>
+              {userInfo.map((item, index) => {
+                return (
+                  <div key={index} className="avatar-profile-main">
+                    <div>
+                      <Avatar
+                        size="large"
+                        style={{
+                          color: "black",
+                          fontWeight: "600",
+                          fontSize: "19px",
+                        }}
+                      >
+                        {item.email?.charAt(0).toUpperCase()}
+                      </Avatar>
+                    </div>
+                    <div className="profilename ml-3">
+                      <div
+                        style={{
+                          color: "black",
+                          fontWeight: "600",
+                          fontSize: "18px",
+                        }}
+                      >
+                        {item.username}
+                      </div>
+                      <div
+                        style={{
+                          color: "black",
+                          fontWeight: "600",
+                          fontSize: "18px",
+                        }}
+                      >
+                        {item.email}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
