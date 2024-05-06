@@ -22,9 +22,10 @@ const Feed = () => {
         const response = await fetch(apiUrl, {
           headers: {
             Authorization: token,
-          },
+          }
         });
         const data = await response.json();
+        console.log(data);
         dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
       } catch (err) {
         console.error(err);
