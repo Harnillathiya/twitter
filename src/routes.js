@@ -6,7 +6,6 @@ import Profile from "./Page/Profile";
 import Notifications from "./Page/Notifications";
 import Massages from "./Page/Massages";
 import Premium from "./Page/Premium";
-import More from "./Page/More";
 import Trending from "./Explore/Trending";
 import Foryou from "./Explore/Foryou";
 import News from "./Explore/News";
@@ -43,10 +42,6 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
-      },
-      {
-        path: "more",
-        element: <More />,
       },
       {
         path: "explore/foryou",

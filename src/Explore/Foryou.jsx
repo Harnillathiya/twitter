@@ -28,7 +28,6 @@ const Foryou = () => {
   };
 
   const handleFollow = async (item) => {
-    
     const token = localStorage.getItem("token");
     const id = item._id;
     try {
@@ -47,15 +46,13 @@ const Foryou = () => {
       console.error("erroe", error);
       alert(error.message);
     }
-    
   };
-  console.log(users, "ooooooooooooooooooooooo");
+
   return (
     <div>
       <Explore />
       <div style={{ border: "1px solid black" }}>
         {users.map((item, index) => (
-         
           <div
             key={index}
             style={{
@@ -67,7 +64,6 @@ const Foryou = () => {
               borderBottom: "1px solid #ccc",
             }}
           >
-            
             <div style={{ display: "flex" }}>
               <Avatar
                 style={{
@@ -88,10 +84,7 @@ const Foryou = () => {
               </div>
             </div>
             <div>
-              <Button
-                type="primary"
-                onClick={() => handleFollow(item)}
-              >
+              <Button type="primary" onClick={() => handleFollow(item)}>
                 Follow
               </Button>
             </div>
