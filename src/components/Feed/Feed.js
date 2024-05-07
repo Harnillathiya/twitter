@@ -19,11 +19,11 @@ const Feed = () => {
           ? "http://localhost:8000/api/showAllTweet"
           : "http://localhost:8000/api/showTweet";
 
-        const response = await fetch(apiUrl, {
-          headers: {
-            Authorization: token,
-          }
-        });
+          const response = await fetch(apiUrl, {
+            headers: {
+              Authorization: token,
+            }
+          });
         const data = await response.json();
         console.log(data);
         dispatch({ type: TWEET_FETCH_SUCCESS, payload: data.data });
