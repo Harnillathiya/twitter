@@ -27,15 +27,35 @@ const Foryou = () => {
     }
   };
 
-  const handleFollow = (item) => {
-    console.log(item);
+  const handleFollow = async (item) => {
+    
+    const token = localStorage.getItem("token");
+    const id = item._id;
+    try {
+      const res = await fetch(`${BASE_URL}/follow`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({ id }),
+      });
+      const result = await res.json();
+      console.log("result", result);
+      if (!res.ok) throw new Error(result.message);
+    } catch (error) {
+      console.error("erroe", error);
+      alert(error.message);
+    }
+    
   };
-
+  console.log(users, "ooooooooooooooooooooooo");
   return (
     <div>
       <Explore />
       <div style={{ border: "1px solid black" }}>
         {users.map((item, index) => (
+         
           <div
             key={index}
             style={{
@@ -47,6 +67,7 @@ const Foryou = () => {
               borderBottom: "1px solid #ccc",
             }}
           >
+            
             <div style={{ display: "flex" }}>
               <Avatar
                 style={{
