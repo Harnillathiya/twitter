@@ -137,7 +137,6 @@ const Leftsidebar = () => {
           <div className="leftmainbar">
             <div className="box">
               <CiCircleMore size={"26"} />
-              <Link to="/more">
                 <Button onClick={handleOpen} className="more">
                   More
                 </Button>
@@ -183,7 +182,6 @@ const Leftsidebar = () => {
                     </Box>
                   </Fade>
                 </Modal>
-              </Link>
             </div>
           </div>
           <div className="leftmainbar_logout">
