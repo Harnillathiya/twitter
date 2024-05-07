@@ -11,10 +11,13 @@ const Foryou = () => {
   }, []);
 
   const fetchUsers = async () => {
+    const token = localStorage.getItem("token");
+
     try {
       const response = await fetch(`${BASE_URL}/users`, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
       });
       if (!response.ok) {
@@ -28,8 +31,13 @@ const Foryou = () => {
   };
 
   const handleFollow = async (item) => {
+    console.log("isFollow",item.isFollow);
     const token = localStorage.getItem("token");
-    const id = item._id;
+    const id = item;
+    console.log(item);
+
+    
+
     try {
       const res = await fetch(`${BASE_URL}/follow`, {
         method: "POST",
@@ -42,10 +50,35 @@ const Foryou = () => {
       const result = await res.json();
       console.log("result", result);
       if (!res.ok) throw new Error(result.message);
+      fetchUsers()
     } catch (error) {
       console.error("erroe", error);
       alert(error.message);
     }
+
+  };
+  const handleUnFollow = async (item) => {
+    console.log("isFollow",item.isFollow);
+    const token = localStorage.getItem("token");
+    const id = item;
+    try {
+      const res = await fetch(`${BASE_URL}/unfollow`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({ id }),
+      });
+      const result = await res.json();
+      console.log("result", result);
+      if (!res.ok) throw new Error(result.message);
+      fetchUsers()
+    } catch (error) {
+      console.error("erroe", error);
+      alert(error.message);
+    }
+
   };
 
   return (
@@ -84,9 +117,11 @@ const Foryou = () => {
               </div>
             </div>
             <div>
-              <Button type="primary" onClick={() => handleFollow(item)}>
-                Follow
-              </Button>
+              {item.isFollow ? (
+                <Button type="primary" onClick={() => handleUnFollow(item)}>Unfollow</Button>
+              ) : (
+                <Button type="primary" onClick={() => handleFollow(item)}>Follow</Button>
+              )}
             </div>
           </div>
         ))}
