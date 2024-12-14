@@ -8,7 +8,6 @@
 
 .header {
   margin-bottom: 20px;
-  display: ruby;
 }
 
 .signup-form {
@@ -45,4 +44,5 @@
 
 .login-image2 {
   width: 15%;
+  margin: auto;
 }
